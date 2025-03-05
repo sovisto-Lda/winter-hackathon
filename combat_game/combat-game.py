@@ -59,7 +59,7 @@ class Player:
     def throw_projectile(self, direction):
         if (self.projectile_timer > 0): return
         
-        self.projectile_timer = 100
+        self.projectile_timer = 70
 
         if direction == 'right':
             self.projectiles.append(pygame.Rect(self.rect.right, self.rect.centery, 10, 5))
@@ -80,6 +80,7 @@ class Player:
                     opponent.health -= ATTACK_DAMAGE
                     self.projectiles.remove(projectile)
 
+        self.projectile_buffer()
 
 
 
