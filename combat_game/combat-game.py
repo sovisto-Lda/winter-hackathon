@@ -19,13 +19,27 @@ FONT = pygame.font.Font(None, 50)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Simple Combat Game")
 
-# Player class
 class Player:
-    def __init__(self, x, y, color):
-        self.rect = pygame.Rect(x, y, *PLAYER_SIZE)
-        self.color = color
-        self.health = 100
-        self.projectiles = []
+    def __init__(self, x, y, image_path, color):
+        try:
+            self.image = pygame.image.load(image_path).convert_alpha()  # Load image safely
+            self.image = pygame.transform.scale(self.image, PLAYER_SIZE)  # Resize
+        except pygame.error as e:
+            print(f"Error loading image: {e}")
+            self.image = pygame.Surface(PLAYER_SIZE)  # Fallback
+            self.image.fill(color)  # Fill with player's color
+        
+        self.rect = self.image.get_rect(topleft=(x, y))  # Set position
+        self.color = color  # Store color for projectile logic
+        self.projectiles = []  # Initialize projectiles
+        self.health = 100  # Initialize health
+
+        self.projectile_timer = 0
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)  # Draw player image
+        for projectile in self.projectiles:
+            pygame.draw.rect(screen, BLACK, projectile)  # Draw projectiles
 
     def move(self, keys, left, right, up, down):
         if keys[left] and self.rect.x - VEL > 0:
@@ -37,14 +51,23 @@ class Player:
         if keys[down] and self.rect.y + VEL < HEIGHT - PLAYER_SIZE[1]:
             self.rect.y += VEL
 
+    def projectile_buffer(self):
+        if (self.projectile_timer >= 0):
+            self.projectile_timer -= 1
+        else: self.projectile_timer = 0
+
     def throw_projectile(self, direction):
+        if (self.projectile_timer > 0): return
+        
+        self.projectile_timer = 100
+
         if direction == 'right':
             self.projectiles.append(pygame.Rect(self.rect.right, self.rect.centery, 10, 5))
         elif direction == 'left':
             self.projectiles.append(pygame.Rect(self.rect.left - 10, self.rect.centery, 10, 5))
 
     def update_projectiles(self, opponent):
-        for projectile in self.projectiles[:]:
+        for projectile in self.projectiles[:]:  # Iterate over a copy of the list
             if projectile.x > WIDTH or projectile.x < 0:
                 self.projectiles.remove(projectile)
             else:
@@ -52,17 +75,14 @@ class Player:
                     projectile.x += PROJECTILE_SPEED
                 else:
                     projectile.x -= PROJECTILE_SPEED
-                
+
                 if projectile.colliderect(opponent.rect):
                     opponent.health -= ATTACK_DAMAGE
                     self.projectiles.remove(projectile)
 
-    def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect)
-        for projectile in self.projectiles:
-            pygame.draw.rect(screen, BLACK, projectile)
 
-        
+
+
 # Game over screen
 def game_over(winner):
     screen.fill(WHITE)
@@ -82,18 +102,19 @@ def game_over(winner):
 
 # Main game function
 def main():
+    background = pygame.image.load("images/background.jpeg").convert()
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # Resize to fit window
+
     clock = pygame.time.Clock()
     run = True
 
-    # Initialize players
-    player1 = Player(100, HEIGHT//2, RED)
-    player2 = Player(WIDTH-150, HEIGHT//2, BLUE)
-    
-    troll = Troll()
+    # Initialize players with images
+    player1 = Player(100, HEIGHT//2, "images/bat.png", RED)
+    player2 = Player(WIDTH-150, HEIGHT//2, "images/bat.png", BLUE)
 
     while run:
         clock.tick(60)
-        screen.fill(WHITE)
+        screen.blit(background, (0, 0))
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -112,6 +133,7 @@ def main():
         # Update projectiles
         player1.update_projectiles(player2)
         player2.update_projectiles(player1)
+    
         
         # Draw players and projectiles
         player1.draw(screen)
