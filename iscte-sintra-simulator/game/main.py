@@ -6,6 +6,7 @@ from structures.static_structures.static_structure import StaticStructure
 from structures.interactive_structures.interactive_structure import InteractiveStructure
 from structures.interactive_structures.gateway import Gateway
 from main_menu import MainMenu
+from multiusos import Multiusos
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,6 +51,8 @@ interactibles.append(gate1)
 
 
 #MainMenu(screen)
+Multiusos(screen)
+
 
 while running:
     # poll for events
@@ -65,7 +68,8 @@ while running:
 
     if (keys[pygame.K_e]):
         for interactible in interactibles:
-            interactible.interact()
+            if(interactible.checkProximity(players)):
+                interactible.interact()
 
         for interactible in interactibles:
             interactible.checkProximity(players)
