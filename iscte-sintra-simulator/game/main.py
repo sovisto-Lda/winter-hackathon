@@ -2,7 +2,9 @@ import os
 import pygame
 from global_variables import GameVariables as GB
 from characters.players.player import Player
+from characters.npcs.npc import NPC
 from structures.static_structures.static_structure import StaticStructure
+from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.interactive_structure import InteractiveStructure
 from structures.interactive_structures.gateway import Gateway
 from main_menu import MainMenu
@@ -39,6 +41,7 @@ players.append(player2)
 struc1 = StaticStructure(500, 20, "iscte-sintra-simulator/assets/images/static_structure_PH.png")
 struc2 = InteractiveStructure(700, 20, "iscte-sintra-simulator/assets/images/interactive_structure_PH.png", screen)
 gate1 = Gateway(100, 400, "iscte-sintra-simulator/assets/images/gateway.png", screen)
+
 
 colidables.append(player1)
 colidables.append(player2)
@@ -82,7 +85,6 @@ while running:
     struc1.draw(screen)
     struc2.draw(screen)
     gate1.draw(screen)
-
 
 
 

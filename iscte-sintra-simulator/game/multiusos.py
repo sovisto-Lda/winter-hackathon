@@ -2,6 +2,8 @@ import os
 import pygame
 from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
+from characters.npcs.npc import NPC
+from structures.static_structures.table_multiusos import TableMultiusos
 
 
 
@@ -17,15 +19,19 @@ def Multiusos(screen):
 
     screen.fill((0,0,0))
 
-    image = pygame.image.load("iscte-sintra-simulator/assets/images/ISS_Sala_Multiusos.png").convert_alpha()  # Load image safely
+    image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos s col_UATA escura.png").convert_alpha()  # Load image safely
     image = pygame.transform.scale(image, (1280, 720))
 
     rect = image.get_rect()  # Set position
     rect.topleft = (0, 0)  # Position at the top-left corner
 
+    table1 = TableMultiusos(900, 500, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png")
+
     player1 = Gaudencio(100, 50//2, "iscte-sintra-simulator/assets/images/gaudencio.png", (0,0,0))
 
-    colidables = []
+    npc1 = NPC(150, 450, "iscte-sintra-simulator/assets/images/Fred.png", (0,0,0))
+
+    colidables = [table1]
 
 
 
@@ -44,6 +50,9 @@ def Multiusos(screen):
         player1.move(keys, colidables)
 
         screen.blit(image, rect)  # Draw player image
+
+        table1.draw(screen)
+        npc1.draw(screen)
         player1.draw(screen)
 
      
