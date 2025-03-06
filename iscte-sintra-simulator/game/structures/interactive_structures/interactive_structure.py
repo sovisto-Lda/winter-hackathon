@@ -19,9 +19,10 @@ class InteractiveStructure(Structure):
 
             if (dx*dx + dy*dy < 10000): 
                 self.isInteracting = True
-                return
+                return True
             else: 
                 self.isInteracting = False
+                return False
 
     def interact(self):
         active_box = None
