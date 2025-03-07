@@ -61,15 +61,44 @@ def open_dialog(screen):
 # def close_dialog(self, players, screen):
 #     if self.checkProximity(players, screen): self.openDialog = False
 
-def main():
+def minigame2():
     global game_phase, sequence_p1, sequence_p2, player_input_p1, player_input_p2, score_p1, score_p2, result_message
 
     clock = pygame.time.Clock()
     running = True
+    
+    
+    image1 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_1.png").convert_alpha()
+    image2 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_2.png").convert_alpha()
+    image3 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_3.png").convert_alpha()
+    image4 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_4.png").convert_alpha()
+    image5 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_5.png").convert_alpha()
+    # Scale images to fit the screen
+    image1 = pygame.transform.scale(image1, (WIDTH, HEIGHT))
+    image2 = pygame.transform.scale(image2, (WIDTH, HEIGHT))
+    image3 = pygame.transform.scale(image3, (WIDTH, HEIGHT))
+    image4 = pygame.transform.scale(image4, (WIDTH, HEIGHT))
+    image5 = pygame.transform.scale(image5, (WIDTH, HEIGHT))
 
     while running:
-        screen.fill(WHITE)
+        # Clear the skin
+        screen.fill(WHITE) 
+        
 
+        # Draw background image based on game phase
+        if game_phase == "input_p1":
+            screen.blit(image1, (0, 0))  # Show image1 for input_p1
+        elif game_phase == "repeat_p2":
+            screen.blit(image2, (0, 0))  # Show image2 for repeat_p2
+        elif game_phase == "input_p2":
+            screen.blit(image3, (0, 0))  # Show image3 for input_p2
+        elif game_phase == "repeat_p1":
+            screen.blit(image4, (0, 0))  # Show image4 for repeat_p1
+        
+        else:
+            screen.blit(image5,(0,0))
+        
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -79,10 +108,10 @@ def main():
             # Player 1 inputs sequence
             if game_phase == "input_p1" and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and sequence_p1:  # Press space to end player 1 sequence
-                    open_dialog(screen);
-
+                    # open_dialog(screen);
                     game_phase = "repeat_p2"
                     player_input_p2 = ""
+
                 elif event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
                     sequence_p1 += event.unicode
             
@@ -99,6 +128,7 @@ def main():
                     elif player_input_p2 == sequence_p1:
                         
                         game_phase = "input_p2"
+
                         sequence_p2 = ""  # Reset for next round
                   
             elif game_phase == "input_p2" and event.type == pygame.KEYDOWN:
@@ -123,41 +153,28 @@ def main():
         if game_phase == "end":
             if score_p1 > score_p2:
                 result_message = "O jogador 1 ganha! Uma Sweat Iscte-Sintra para ti J1"
-            elif score_p1 < score_p1:
+            elif score_p1 < score_p2:
                 result_message = "O jogador 2 ganha! Uma Sweat Iscte-Sintra para ti J2"
             else:
                 result_message = "Empate, ninguem recebe nada..."
         # UI Drawing
-        draw_text("Testem as vossas memorias!", 50, 20)
 
         if game_phase == "input_p1":
-            draw_text("Jogador 1: Escreve a sequencia e pressiona ESPAÇO!", 50, 100)
-            draw_text("Sequencia do Jogador 1: " + sequence_p1, 50, 150)
+            draw_text(sequence_p1, 500, 250)
 
         elif game_phase == "repeat_p2":
-            draw_text("Jogador 2: Repete a sequencia do Jogador 1!", 50, 100)
-            draw_text("Sequencia do Jogador 2: " + player_input_p2, 50, 150)
+            draw_text(player_input_p2, 500, 250)
 
         elif game_phase == "input_p2":
-            draw_text("Jogador 2: Escreve a sequencia e pressiona ESPAÇO!", 50, 100)
-            draw_text("Sequencia do Jogador 2: " + sequence_p2, 50, 150)
+            draw_text(sequence_p2, 500, 250)
 
         elif game_phase == "repeat_p1":
-            draw_text("Jogador 1: Repete a sequencia do Jogador 2!", 50, 100)
-            draw_text("Sequencia do Jogador 1: " + player_input_p1, 50, 150)
+            draw_text(player_input_p1, 500, 250)
 
         elif game_phase == "end":
-            draw_text(result_message, 200, 150, GREEN if "ganha"  in result_message else RED)
-            draw_text("Jogo terminado!", 180, 250)
+            draw_text(result_message, 200, 300)
 
         pygame.display.flip()
         clock.tick(30)
 
     pygame.quit()
-
-
-
-
-
-if __name__ == "__main__":
-    main()
