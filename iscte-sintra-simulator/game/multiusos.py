@@ -7,6 +7,8 @@ from structures.static_structures.table_multiusos import TableMultiusos
 
 
 
+
+
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
 def Multiusos(screen):

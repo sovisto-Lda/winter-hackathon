@@ -37,6 +37,30 @@ def draw_text(text, x, y, color=BLACK):
     screen.blit(FONT.render(text, True, color), (x, y))
 
 
+def open_dialog(screen):
+        dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_explain.png").convert_alpha()
+        # dialog = pygame.transform.scale(dialog, (int(dialog.get_width() * 1.5), int(dialog.get_height() * 1.5)))
+        dialog_rect = dialog.get_rect()  # Set position
+        dialog_rect.centerx = 620
+        dialog_rect.centery = 350
+        screen.blit(dialog, dialog_rect)
+        waiting = True
+        while waiting:
+            screen.fill(WHITE)
+            screen.blit(dialog,dialog_rect)
+
+            pygame.display.flip()
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
+                if event.type == pygame.KEYDOWN and event.key ==pygame.K_SPACE:
+                    waiting = False
+
+# def close_dialog(self, players, screen):
+#     if self.checkProximity(players, screen): self.openDialog = False
+
 def main():
     global game_phase, sequence_p1, sequence_p2, player_input_p1, player_input_p2, score_p1, score_p2, result_message
 
@@ -49,14 +73,18 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            
+            
 
             # Player 1 inputs sequence
             if game_phase == "input_p1" and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and sequence_p1:  # Press space to end player 1 sequence
+                    open_dialog(screen);
+
                     game_phase = "repeat_p2"
                     player_input_p2 = ""
                 elif event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
-                    sequence_p1 += event.unicode  # Guarda o input (but don't display it)
+                    sequence_p1 += event.unicode
             
             elif game_phase == "repeat_p2" and event.type == pygame.KEYDOWN:
                 if event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
@@ -94,11 +122,11 @@ def main():
 
         if game_phase == "end":
             if score_p1 > score_p2:
-                result_message = "O jogador 1 ganha!"
+                result_message = "O jogador 1 ganha! Uma Sweat Iscte-Sintra para ti J1"
             elif score_p1 < score_p1:
-                result_message = "O jogador 2 ganha!"
+                result_message = "O jogador 2 ganha! Uma Sweat Iscte-Sintra para ti J2"
             else:
-                result_message = "Empate!"
+                result_message = "Empate, ninguem recebe nada..."
         # UI Drawing
         draw_text("Testem as vossas memorias!", 50, 20)
 
@@ -119,13 +147,16 @@ def main():
             draw_text("Sequencia do Jogador 1: " + player_input_p1, 50, 150)
 
         elif game_phase == "end":
-            draw_text(result_message, 200, 150, GREEN if "ganha" or "empate" in result_message else RED)
+            draw_text(result_message, 200, 150, GREEN if "ganha"  in result_message else RED)
             draw_text("Jogo terminado!", 180, 250)
 
         pygame.display.flip()
         clock.tick(30)
 
     pygame.quit()
+
+
+
 
 
 if __name__ == "__main__":
