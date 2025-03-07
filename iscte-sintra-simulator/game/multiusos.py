@@ -46,8 +46,14 @@ def Multiusos(screen):
         screen.fill("white")
 
         keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_e]:
+            npc1.open_dialog([player1], screen)
+        if keys[pygame.K_x]:
+            npc1.close_dialog([player1], screen)
         
         player1.move(keys, colidables)
+
 
         screen.blit(image, rect)  # Draw player image
 
@@ -55,7 +61,9 @@ def Multiusos(screen):
         npc1.draw(screen)
         player1.draw(screen)
 
-     
+
+        npc1.interact([player1], screen)
+
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
@@ -64,3 +72,6 @@ def Multiusos(screen):
 
 
     pygame.quit()
+screen = pygame.display.set_mode((1280, 720))
+
+Multiusos(screen)
