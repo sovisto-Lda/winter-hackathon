@@ -39,7 +39,7 @@ def Entrada(screen):
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print(event.pos)
-               
+
             if event.type == pygame.QUIT:
                 running = False              
 
