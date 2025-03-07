@@ -1,0 +1,1 @@
+[:len(player_input_p2)]
