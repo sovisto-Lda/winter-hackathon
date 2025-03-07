@@ -28,10 +28,10 @@ class Player:
         self.orientation = "R"
 
     def draw(self, screen):
-        if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/player_up_PH.png").convert_alpha()
-        if self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/player_down_PH.png").convert_alpha()
-        if self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/player_left_PH.png").convert_alpha()
-        if self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/player_right_PH.png").convert_alpha()
+        if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_back.png").convert_alpha()
+        if self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_front.png").convert_alpha()
+        if self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_left.png").convert_alpha()
+        if self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_right.png").convert_alpha()
             
         self.image = pygame.transform.scale(self.image, PLAYER_SIZE)  # Resize
         screen.blit(self.image, self.rect)  # Draw player image
