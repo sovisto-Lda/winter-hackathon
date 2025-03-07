@@ -27,8 +27,8 @@ class UATA:
         rect = image.get_rect()  # Set position
         rect.topleft = (0, 0)  # Position at the top-left corner
 
-        player1 = Player(120, 230, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-        player2 = Player(120, 230, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
+        player1 = Player(370, 200, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
+        player2 = Player(270, 200, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
 
         fred = Fred(100, 100, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", (0,0,0))        
         
@@ -57,7 +57,6 @@ class UATA:
                 
                 if door1.can_interact([player1, player2], screen):
                     return "go to multiusos"
-
 
 
             if keys[pygame.K_x]:

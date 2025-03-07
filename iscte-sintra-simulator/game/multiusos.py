@@ -38,7 +38,6 @@ class Multiusos:
         player2 = Player(900, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
 
 
-        npc1 = NPC(150, 450, "iscte-sintra-simulator/assets/images/fred/Fred_front.png", (0,0,0))
 
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
@@ -65,19 +64,17 @@ class Multiusos:
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                npc1.open_dialog([player1, player2], screen)
-
                 if door1.can_interact([player1, player2], screen):
+                    print('rabo')
                     return "go to entrada"
                 
                 if door2.can_interact([player1, player2], screen):
                     return "go to uata"
+                    pass
 
                     
 
-            if keys[pygame.K_x]:
-                npc1.close_dialog([player1, player2], screen)
-            
+        
             player1.move(keys, colidables)
             player2.move(keys, colidables)
 
@@ -95,15 +92,9 @@ class Multiusos:
             table2.draw(screen)
             table3.draw(screen)
             table4.draw(screen)
-            npc1.draw(screen)
             player1.draw(screen)
             player2.draw(screen)
 
-
-
-
-            npc1.interact([player1, player2], screen)
-            # edoor1.interact([player1, player2], screen)
 
             pygame.display.flip()
 
@@ -113,8 +104,3 @@ class Multiusos:
 
 
         pygame.quit()
-
-
-screen = pygame.display.set_mode((1280, 720))
-
-Multiusos(screen)
