@@ -1,0 +1,83 @@
+import pygame
+from characters.players.player import Player
+from characters.players.gaudencio import Gaudencio
+from structures.static_structures.table_multiusos import TableMultiusos
+from structures.interactive_structures.gateway import Gateway
+from characters.npcs.fred import Fred
+
+
+class UATA:
+    def __init__(self, screen):
+        self.screen = screen
+
+    def load(self):
+
+        pygame.init()
+
+        screen = pygame.display.set_mode((1280, 720))
+        clock = pygame.time.Clock()
+        running = True
+        dt = 0
+
+        screen.fill((0,0,0))
+
+        image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos col_MULTIUSOS escura.png").convert_alpha()  # Load image safely
+        image = pygame.transform.scale(image, (1280, 720))
+
+        rect = image.get_rect()  # Set position
+        rect.topleft = (0, 0)  # Position at the top-left corner
+
+        player1 = Player(120, 230, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0))
+
+        fred = Fred(100, 100, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", (0,0,0))        
+        
+        door1 = Gateway(540,249, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", 0, screen)
+
+        colidables = [door1]
+
+
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    print(event.pos)
+                
+                if event.type == pygame.QUIT:
+                    running = False              
+
+            screen.fill("white")
+
+            keys = pygame.key.get_pressed()
+
+            if keys[pygame.K_e]:
+                fred.open_dialog([player1], screen)
+                
+                if door1.can_interact([player1], screen):
+                    return "go to multiusos"
+
+
+
+            if keys[pygame.K_x]:
+                fred.close_dialog([player1], screen)
+                
+                return "go to memoria"
+            
+            player1.move(keys, colidables)
+
+            screen.blit(image, rect)  # Draw player image
+
+            door1.draw(screen)
+            fred.draw(screen)
+            player1.draw(screen)
+
+
+            fred.interact([player1], screen)
+            # edoor1.interact([player1], screen)
+
+            pygame.display.flip()
+
+            dt = clock.tick(60) / 1000
+
+
+
+
+        pygame.quit()

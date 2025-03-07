@@ -1,5 +1,4 @@
 import pygame
-#from ...global_variables import GameVariables as GB
 
 
 WHITE = (255, 255, 255)
@@ -48,8 +47,6 @@ class NPC:
                 return True  # Collision detected
         return False  # No collision
     
-
-
 
     def checkProximity(self, players, screen):
         for player in players:

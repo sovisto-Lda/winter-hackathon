@@ -8,10 +8,16 @@ from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.interactive_structure import InteractiveStructure
 from structures.interactive_structures.gateway import Gateway
 from main_menu import MainMenu
+<<<<<<< Updated upstream
 from multiusos import Multiusos
+=======
+from uata import UATA
+from minigames.minigame2 import Minigame2
+>>>>>>> Stashed changes
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
+<<<<<<< Updated upstream
 # pygame setup
 pygame.init()
 GB = GB()
@@ -19,6 +25,32 @@ GB = GB()
 pygame.font.init() 
 myfont = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
 text_surface = myfont.render('Some Text', False, (0, 0, 0))
+=======
+mainMenu = MainMenu(screen)
+multiusos = Multiusos(screen)
+entrada = Entrada(screen)
+gaudencioMinigame = GaudencioMinigame(screen)
+uata = UATA(screen)
+minigame2 = Minigame2(screen)
+
+
+mainMenu.load()
+nextCena = entrada.load()
+
+while True:
+    if nextCena == "go to gaudencio":
+        nextCena = gaudencioMinigame.load()
+    elif nextCena ==  "go to multiusos":
+        nextCena = multiusos.load()
+    elif nextCena == "go to entrada":
+        nextCena = entrada.load()
+    elif nextCena == "go to uata":
+        nextCena = uata.load()
+    elif nextCena == "go to lab":
+        nextCena = lab.load()
+    elif nextCena == "go to memoria":
+        nextCena = minigame2.load()
+>>>>>>> Stashed changes
 
 
 
