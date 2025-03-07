@@ -3,6 +3,7 @@ import pygame
 from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
 from characters.npcs.npc import NPC
+from characters.npcs.fred import Fred
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
 from entrada import Entrada
@@ -32,6 +33,7 @@ def Multiusos(screen):
 
     door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
 
+    fred = Fred(0,0,"iscte-sintra-simulator/assets/images/FredOnThePhone_right",(0,0,0))
 
     colidables = [table1, door1]
 
@@ -54,13 +56,15 @@ def Multiusos(screen):
             if door1.can_interact([player1], screen):
                 Entrada(screen)
                 return
+            
+            
 
 
 
         if keys[pygame.K_x]:
             npc1.close_dialog([player1], screen)
         
-        if key
+        
         
         player1.move(keys, colidables)
 

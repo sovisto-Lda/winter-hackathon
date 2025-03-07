@@ -27,7 +27,7 @@ def Entrada(screen):
     rect = image.get_rect()  # Set position
     rect.topleft = (0, 0)  # Position at the top-left corner
 
-    player1 = Gaudencio(200, 250, "iscte-sintra-simulator/assets/images/gaudencio.png", (0,0,0))
+    player1 = Player(200, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio.png", (0,0,0))
 
     npc1 = Seguranca(200, 180, "iscte-sintra-simulator/assets/images/seguranca.png", (0,0,0))
 
