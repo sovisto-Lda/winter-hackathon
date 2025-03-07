@@ -38,12 +38,11 @@ def MainMenu(screen):
 
 
     #load button
-    load_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/carregar.png").convert_alpha()
-    load_game_image = pygame.transform.scale(load_game_image, (int(load_game_image.get_width() * .75), int(load_game_image.get_height() * .75)))
-    load_game_rect = load_game_image.get_rect()  # Set position
-    load_game_rect.centerx = 640 + int(load_game_image.get_width()/2) + 25
-    load_game_rect.centery = 450
-
+    exit_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair.png").convert_alpha()
+    exit_game_image = pygame.transform.scale(exit_game_image, (int(exit_game_image.get_width() * .75), int(exit_game_image.get_height() * .75)))
+    exit_game_rect = exit_game_image.get_rect()  # Set position
+    exit_game_rect.centerx = 640 + int(exit_game_image.get_width()/2) + 25
+    exit_game_rect.centery = 450
 
 
 
@@ -56,14 +55,16 @@ def MainMenu(screen):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print(event.pos)
                 if play_game_rect.collidepoint(event.pos):
-                    print("cenas")
+                    print("jogar")
                     Multiusos(screen)
+                    return
+                if exit_game_rect.collidepoint(event.pos):
+                    print("sair")
+                    exit()
                     return
 
             if event.type == pygame.QUIT:
                 running = False   
-
-
 
 
 
@@ -76,12 +77,12 @@ def MainMenu(screen):
             play_game_image = pygame.transform.scale(play_game_image, (int(play_game_image.get_width() * .75), int(play_game_image.get_height() * .75)))
 
 
-        if load_game_rect.collidepoint(mouse_pos):
-            load_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/carregar_pressed.png").convert_alpha()
-            load_game_image = pygame.transform.scale(load_game_image, (int(load_game_image.get_width() * .75), int(load_game_image.get_height() * .75)))
+        if exit_game_rect.collidepoint(mouse_pos):
+            exit_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair_pressed.png").convert_alpha()
+            exit_game_image = pygame.transform.scale(exit_game_image, (int(exit_game_image.get_width() * .75), int(exit_game_image.get_height() * .75)))
         else:
-            load_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/carregar.png").convert_alpha()
-            load_game_image = pygame.transform.scale(load_game_image, (int(load_game_image.get_width() * .75), int(load_game_image.get_height() * .75)))
+            exit_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair.png").convert_alpha()
+            exit_game_image = pygame.transform.scale(exit_game_image, (int(exit_game_image.get_width() * .75), int(exit_game_image.get_height() * .75)))
            
 
         screen.fill("white")
@@ -92,7 +93,7 @@ def MainMenu(screen):
 
         screen.blit(image, rect)  # Draw player image
         screen.blit(play_game_image, play_game_rect)
-        screen.blit(load_game_image, load_game_rect)
+        screen.blit(exit_game_image, exit_game_rect)
 
 
      
