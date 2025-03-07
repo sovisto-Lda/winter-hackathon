@@ -5,8 +5,8 @@ from ..structure import Structure
 
 class InteractiveStructure(Structure):
 
-    def __init__(self, x, y, image_path, screen):
-        super().__init__(x, y, image_path)
+    def __init__(self, x, y, image_path, scale_multiplier, screen):
+        super().__init__(x, y, image_path, scale_multiplier)
 
         self.screen = screen
 

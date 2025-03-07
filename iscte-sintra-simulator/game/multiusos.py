@@ -3,6 +3,8 @@ import pygame
 from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
 from characters.npcs.npc import NPC
+from structures.interactive_structures.gateway import Gateway
+
 from structures.static_structures.table_multiusos import TableMultiusos
 
 
@@ -46,11 +48,14 @@ def Multiusos(screen):
         screen.fill("white")
 
         keys = pygame.key.get_pressed()
+
+        door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         
         player1.move(keys, colidables)
 
         screen.blit(image, rect)  # Draw player image
 
+        door1.draw(screen)
         table1.draw(screen)
         npc1.draw(screen)
         player1.draw(screen)
@@ -64,3 +69,6 @@ def Multiusos(screen):
 
 
     pygame.quit()
+screen = pygame.display.set_mode((1280, 720))
+
+Multiusos(screen)
