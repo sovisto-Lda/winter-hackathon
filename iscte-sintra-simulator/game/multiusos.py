@@ -5,11 +5,8 @@ from characters.players.gaudencio import Gaudencio
 from characters.npcs.npc import NPC
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
+from entrada import Entrada
 
-
-
-
-os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
 def Multiusos(screen):
     pygame.init()
@@ -39,7 +36,6 @@ def Multiusos(screen):
     colidables = [table1, door1]
 
 
-
     while running:
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -54,13 +50,17 @@ def Multiusos(screen):
 
         if keys[pygame.K_e]:
             npc1.open_dialog([player1], screen)
-            door1.travel()
+            
+            if door1.can_interact([player1], screen):
+                Entrada(screen)
+                return
+
+
+
         if keys[pygame.K_x]:
             npc1.close_dialog([player1], screen)
         
         player1.move(keys, colidables)
-
-
 
         screen.blit(image, rect)  # Draw player image
 
@@ -71,7 +71,7 @@ def Multiusos(screen):
 
 
         npc1.interact([player1], screen)
-        door1.interact([player1], screen)
+        # edoor1.interact([player1], screen)
 
         pygame.display.flip()
 

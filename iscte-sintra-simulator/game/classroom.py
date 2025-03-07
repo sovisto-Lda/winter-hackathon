@@ -11,7 +11,7 @@ os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
 
 
-def Entrada(screen):
+def Classroom(screen):
     pygame.init()
 
     screen = pygame.display.set_mode((1280, 720))
@@ -21,7 +21,7 @@ def Entrada(screen):
 
     screen.fill((0,0,0))
 
-    image = pygame.image.load("iscte-sintra-simulator/assets/images/ISS_Entrada.png").convert_alpha()  # Load image safely
+    image = pygame.image.load("iscte-sintra-simulator/assets/images/ISS_Sala_Aula_s_players.png").convert_alpha()  # Load image safely
     image = pygame.transform.scale(image, (1280, 720))
 
     rect = image.get_rect()  # Set position
@@ -95,7 +95,7 @@ def Entrada(screen):
     pygame.quit()
 screen = pygame.display.set_mode((1280, 720))
 
-Entrada(screen)
+Classroom(screen)
 
 
 

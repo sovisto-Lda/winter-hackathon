@@ -1,6 +1,7 @@
 import os
 import pygame
 from multiusos import Multiusos
+from entrada import Entrada
 
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +57,10 @@ def MainMenu(screen):
                 print(event.pos)
                 if play_game_rect.collidepoint(event.pos):
                     print("jogar")
-                    Multiusos(screen)
+
+                    introDialog(screen)
+
+                    Entrada(screen)
                     return
                 if exit_game_rect.collidepoint(event.pos):
                     print("sair")
@@ -105,6 +109,74 @@ def MainMenu(screen):
 
 
     pygame.quit()
+
+def introDialog(screen):
+    screen.fill((255, 255, 255))
+
+    bg_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/background.png").convert_alpha()
+    bg_image = pygame.transform.scale(bg_image, (int(bg_image.get_width() * .45), int(bg_image.get_height() * .45)))
+    bg_rect = bg_image.get_rect()  # Set position
+    bg_rect.topleft = (0,0)
+
+
+    dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/dialog1.png").convert_alpha()
+    dialog_image = pygame.transform.scale(dialog_image, (int(dialog_image.get_width() * .85), int(dialog_image.get_height() * .85)))
+    dialog_rect = bg_image.get_rect()  # Set position
+    dialog_rect.center = (800, 450)
+
+    play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+    play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
+    play2_game_rect = play2_game_image.get_rect()  # Set position
+    play2_game_rect.centerx = 640
+    play2_game_rect.centery = 510
+
+    running2 = True
+    while running2:
+            mouse_pos = pygame.mouse.get_pos()
+            # # print(mouse_pos)
+
+
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    print(event.pos)
+                
+                    if play2_game_rect.collidepoint(event.pos):
+
+                        return
+
+                if event.type == pygame.QUIT:
+                    running2 = False   
+
+
+
+            if play2_game_rect.collidepoint(mouse_pos):
+                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar_pressed.png").convert_alpha()
+                play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
+            else:
+                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
+
+            
+
+            screen.fill("white")
+
+            keys = pygame.key.get_pressed()
+
+            if keys[pygame.K_ESCAPE]:
+                running2 = False
+
+
+
+            screen.blit(bg_image, bg_rect)  # Draw player image
+            screen.blit(dialog_image, dialog_rect)
+            screen.blit(play2_game_image, play2_game_rect)
+
+
+        
+            pygame.display.flip()
+
+    pygame.quit()
+
 
 screen = pygame.display.set_mode((1280, 720))
 
