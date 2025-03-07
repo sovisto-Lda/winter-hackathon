@@ -1,0 +1,1 @@
+explain_image = pygame.transform.scale(explain_image, (WIDTH, HEIGHT))
