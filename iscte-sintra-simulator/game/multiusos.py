@@ -18,7 +18,7 @@ def Multiusos(screen):
 
     screen.fill((0,0,0))
 
-    image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos s col_UATA escura.png").convert_alpha()  # Load image safely
+    image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos s col.png").convert_alpha()  # Load image safely
     image = pygame.transform.scale(image, (1280, 720))
 
     rect = image.get_rect()  # Set position
@@ -59,6 +59,8 @@ def Multiusos(screen):
 
         if keys[pygame.K_x]:
             npc1.close_dialog([player1], screen)
+        
+        if key
         
         player1.move(keys, colidables)
 
