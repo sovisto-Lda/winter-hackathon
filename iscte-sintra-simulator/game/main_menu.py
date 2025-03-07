@@ -15,7 +15,7 @@ def MainMenu(screen):
     dt = 0
 
     #title
-    image = pygame.image.load("iscte-sintra-simulator/assets/images/menu_title.png").convert_alpha()  # Load image safely
+    image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/title.png").convert_alpha()  # Load image safely
     image = pygame.transform.scale(image, (int(image.get_width() * 2), int(image.get_height() * 2)))
     rect = image.get_rect()  # Set position
     rect.centerx = 640
@@ -56,3 +56,7 @@ def MainMenu(screen):
 
 
     pygame.quit()
+
+screen = pygame.display.set_mode((1280, 720))
+
+MainMenu(screen)
