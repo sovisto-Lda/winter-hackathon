@@ -5,6 +5,7 @@ from multiusos import Multiusos
 from main_menu import MainMenu
 from uata import UATA
 from minigames.minigame2 import Minigame2
+from salaLab import LAB
 
 
 screen = pygame.display.set_mode((1280, 720))
@@ -15,6 +16,7 @@ entrada = Entrada(screen)
 gaudencioMinigame = GaudencioMinigame(screen)
 uata = UATA(screen)
 minigame2 = Minigame2(screen)
+lab = LAB(screen)
 
 mainMenu.load()
 nextCena = entrada.load()

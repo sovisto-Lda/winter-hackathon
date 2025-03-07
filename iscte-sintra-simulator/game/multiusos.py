@@ -41,6 +41,7 @@ class Multiusos:
 
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
+        door3 = Gateway(59, 587, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
         blocker0 = pygame.Rect(0, 0, 546, 300)
 
 
@@ -49,7 +50,7 @@ class Multiusos:
         blocker3 = pygame.Rect((5/12)*1280, 265, 10, (2/8)*720)
         blocker4 = pygame.Rect(0, (3/8)*720 + 65, (5/12)*1280, (2/8)*720)
 
-        colidables = [table1, table2, table3, table4, door1, door2, blocker0, blocker1, blocker2, blocker3, blocker4]
+        colidables = [table1, table2, table3, table4, door1, door2, door3, blocker0, blocker1, blocker2, blocker3, blocker4]
 
 
         while running:
@@ -70,7 +71,9 @@ class Multiusos:
                 
                 if door2.can_interact([player1, player2], screen):
                     return "go to uata"
-                    pass
+                
+                if door3.can_interact([player1,player2], screen):
+                    return "go to lab"
 
                     
 
