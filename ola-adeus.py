@@ -1,1 +1,0 @@
-print("ola adeus rabo")
