@@ -37,36 +37,17 @@ def draw_text(text, x, y, color=BLACK):
     screen.blit(FONT.render(text, True, color), (x, y))
 
 
-def open_dialog(screen, image):
-        if image == 0: 
-            dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_explain.png").convert_alpha()
-
-        if image == 1:
-            dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_1.png").convert_alpha()
-        
-        if image == 2:
-            dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_2.png").convert_alpha()
-            
-        if image == 3:
-            dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_3.png").convert_alpha()
-            
-        if image == 4:
-            dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_4.png").convert_alpha()
-
-
+def open_dialog(screen):
+        dialog = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_explain.png").convert_alpha()
         # dialog = pygame.transform.scale(dialog, (int(dialog.get_width() * 1.5), int(dialog.get_height() * 1.5)))
         dialog_rect = dialog.get_rect()  # Set position
         dialog_rect.centerx = 620
         dialog_rect.centery = 350
         screen.blit(dialog, dialog_rect)
-        
         waiting = True
         while waiting:
             screen.fill(WHITE)
             screen.blit(dialog,dialog_rect)
-            
-            draw_text("Testem as vossas memórias!", 50, 20)
-            draw_text("Pressiona ESPAÇO para continuar...", WIDTH // 2 - 100, HEIGHT - 100, BLACK)
 
             pygame.display.flip()
             
@@ -74,9 +55,9 @@ def open_dialog(screen, image):
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                if event.type == pygame.KEYDOWN and event.key ==pygame.K_SPACE:
                     waiting = False
-        
+
 # def close_dialog(self, players, screen):
 #     if self.checkProximity(players, screen): self.openDialog = False
 
@@ -85,9 +66,6 @@ def main():
 
     clock = pygame.time.Clock()
     running = True
-    
-    # Show initial explanation dialog before starting
-    open_dialog(screen, 0)
 
     while running:
         screen.fill(WHITE)
@@ -101,7 +79,8 @@ def main():
             # Player 1 inputs sequence
             if game_phase == "input_p1" and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and sequence_p1:  # Press space to end player 1 sequence
-                    open_dialog(screen, 1)  # Show dialog **once**
+                    open_dialog(screen);
+
                     game_phase = "repeat_p2"
                     player_input_p2 = ""
                 elif event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
@@ -114,18 +93,16 @@ def main():
                     # Check if Player 2 made a mistake
                     if player_input_p2 != sequence_p1[:len(player_input_p2)]:
                         score_p1 += 1
-                        open_dialog(screen, 2)  # Show dialog **once**
                         game_phase = "input_p2"
                         sequence_p2 = ""
                         
                     elif player_input_p2 == sequence_p1:
-                        open_dialog(screen, 2)
+                        
                         game_phase = "input_p2"
                         sequence_p2 = ""  # Reset for next round
                   
             elif game_phase == "input_p2" and event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and sequence_p2:  # End input
-                    open_dialog(screen, 3)  # Show dialog **once**
                     game_phase = "repeat_p1"
                     player_input_p1 = ""
                 elif event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
@@ -139,10 +116,8 @@ def main():
                     # Check if Player 1 made a mistake
                     if player_input_p1 != sequence_p2[:len(player_input_p1)]:
                         score_p2 += 1  # Player 2 wins this round
-                        open_dialog(screen, 4)  # Show dialog **once**
                         game_phase = "end"
                     elif player_input_p1 == sequence_p2:
-                        open_dialog(screen, 4)  # Show dialog **once**
                         game_phase = "end"
 
         if game_phase == "end":
@@ -156,16 +131,20 @@ def main():
         draw_text("Testem as vossas memorias!", 50, 20)
 
         if game_phase == "input_p1":
-            draw_text(sequence_p1, 50, 150)
+            draw_text("Jogador 1: Escreve a sequencia e pressiona ESPAÇO!", 50, 100)
+            draw_text("Sequencia do Jogador 1: " + sequence_p1, 50, 150)
 
         elif game_phase == "repeat_p2":
-            draw_text(player_input_p2, 50, 150)
+            draw_text("Jogador 2: Repete a sequencia do Jogador 1!", 50, 100)
+            draw_text("Sequencia do Jogador 2: " + player_input_p2, 50, 150)
 
         elif game_phase == "input_p2":
-            draw_text(sequence_p2, 50, 150)
+            draw_text("Jogador 2: Escreve a sequencia e pressiona ESPAÇO!", 50, 100)
+            draw_text("Sequencia do Jogador 2: " + sequence_p2, 50, 150)
 
         elif game_phase == "repeat_p1":
-            draw_text(player_input_p1, 50, 150)
+            draw_text("Jogador 1: Repete a sequencia do Jogador 2!", 50, 100)
+            draw_text("Sequencia do Jogador 1: " + player_input_p1, 50, 150)
 
         elif game_phase == "end":
             draw_text(result_message, 200, 150, GREEN if "ganha"  in result_message else RED)
