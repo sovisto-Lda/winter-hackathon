@@ -22,7 +22,7 @@ class InteractiveStructure(Structure):
                 return True
             else: 
                 self.isInteracting = False
-                return False
+        return False
 
     def interact(self):
         active_box = None

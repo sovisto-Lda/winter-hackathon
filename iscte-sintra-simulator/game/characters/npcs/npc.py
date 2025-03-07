@@ -69,7 +69,7 @@ class NPC:
                 return True
             else: 
                 self.isInteracting = False
-                return False
+        return False
 
     def interact(self, players, screen):
         if not (self.checkProximity(players, screen)): return

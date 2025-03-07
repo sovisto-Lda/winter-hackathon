@@ -15,7 +15,7 @@ PROJECTILE_SPEED = 7
 class Gaudencio(Player):
 
     def __init__(self, x, y, image_path, color):
-        super().__init__(x, y, image_path, color)
+        super().__init__(x, y, image_path, color, 1)
 
         self.isTurned = False
 
@@ -48,7 +48,7 @@ class Gaudencio(Player):
 
 
     def set_random_turn_time(self):
-        random_time = random.randint(1000, 3000)
+        random_time = random.randint(1000, 5000)
         pygame.time.set_timer(pygame.USEREVENT, random_time)
         print('Random time set,', random_time)
 

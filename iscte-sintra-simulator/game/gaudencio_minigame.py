@@ -35,7 +35,7 @@ class GaudencioMinigame:
         myfont = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
         titleText = myfont.render('Copia BEM!', False, (220, 220, 220))
 
-        maxpoints = 100
+        maxpoints = 10000
 
         player1_progress_bar = ProgressBar(x=300, y=675, width=200, height=20, max_points=maxpoints)
         player2_progress_bar = ProgressBar(x=1280-300-200, y=675, width=200, height=20, max_points=maxpoints)
@@ -54,13 +54,11 @@ class GaudencioMinigame:
         popup_rect.centery = 500
 
         # Popup timer
-        popup_duration = 8000  # 3 seconds
+        popup_duration = 8000
         popup_start_time = None  # Track when the popup starts
 
 
         popup_start_time = pygame.time.get_ticks()  # Record start time
-
-
 
         while running:
             for event in pygame.event.get():
@@ -80,20 +78,20 @@ class GaudencioMinigame:
             if keys[pygame.K_SPACE]:
                 if not player1_points >= maxpoints:
                     if gaudencio.orientation == "U":
-                        player1_points += 10
+                        player1_points += 15
                         player1_progress_bar.update(player1_points)
                     else:
-                        player1_points -= 50
+                        player1_points -= 25
                         if player1_points < 0: player1_points = 0
                         player1_progress_bar.update(player1_points)
 
             if keys[pygame.K_RETURN]:
                 if not player2_points >= maxpoints:
                     if gaudencio.orientation == "U":
-                        player2_points += 10
+                        player2_points += 15
                         player2_progress_bar.update(player2_points)
                     else:
-                        player2_points -= 50
+                        player2_points -= 25
                         if player2_points < 0: player2_points = 0
                         player2_progress_bar.update(player2_points)
 
@@ -109,6 +107,50 @@ class GaudencioMinigame:
 
             if(player1_points >= maxpoints and player2_points >= maxpoints):
                 print('Felicidade')
+
+                dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/fimDoDia2.png").convert_alpha()
+
+                dialog_image = pygame.transform.scale(dialog_image, (int(dialog_image.get_width() * .35), int(dialog_image.get_height() * .35)))
+                dialog_rect = bg_image.get_rect()  # Set position
+                dialog_rect.center = (570, 620/2 + 42)
+
+                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
+                play2_game_rect = play2_game_image.get_rect()  # Set position
+                play2_game_rect.centerx = 640
+                play2_game_rect.centery = 510
+
+                running2 = True
+                while running2:
+                    mouse_pos = pygame.mouse.get_pos()
+                    # # print(mouse_pos)
+
+
+                    for event in pygame.event.get():
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            print(event.pos)
+                        
+                            if play2_game_rect.collidepoint(event.pos):
+                                running2 = False
+
+
+                    if play2_game_rect.collidepoint(mouse_pos):
+                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar_pressed.png").convert_alpha()
+                        play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
+                    else:
+                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                        play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
+
+                    keys = pygame.key.get_pressed()
+
+                    screen.blit(dialog_image, dialog_rect)
+                    screen.blit(play2_game_image, play2_game_rect)
+
+
+                    
+                    pygame.display.flip()
+
+
                 return "go to entrada"
 
 
@@ -122,12 +164,11 @@ class GaudencioMinigame:
                     screen.blit(popup_image, popup_rect)  # Draw popup
                 else:
                     popup_start_time = None  # Reset after duration
-                    dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/dialog1.png").convert_alpha()
+                    dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/gaudencio_minigame_dialog.png").convert_alpha()
 
-
-                    dialog_image = pygame.transform.scale(dialog_image, (int(dialog_image.get_width() * .85), int(dialog_image.get_height() * .85)))
+                    dialog_image = pygame.transform.scale(dialog_image, (int(dialog_image.get_width() * .35), int(dialog_image.get_height() * .35)))
                     dialog_rect = bg_image.get_rect()  # Set position
-                    dialog_rect.center = (580, 620/2)
+                    dialog_rect.center = (570, 620/2 + 42)
 
                     play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
                     play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))

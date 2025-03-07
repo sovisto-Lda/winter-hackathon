@@ -30,7 +30,6 @@ spaceBoxes.append(spaceBox5)
 spaceBoxes.append(spaceBox6)
 
 
-
 draggableBoxes = []
 lockedBoxes = []
 draggableBox1 = pygame.Rect(100, 200, BOXES_WIDTH, BOXES_HEIGHT)

@@ -1,16 +1,11 @@
-import os
 import pygame
-from global_variables import GameVariables as GB
-from characters.players.player import Player
-from characters.npcs.npc import NPC
-from structures.static_structures.static_structure import StaticStructure
-from structures.static_structures.table_multiusos import TableMultiusos
-from structures.interactive_structures.interactive_structure import InteractiveStructure
-from structures.interactive_structures.gateway import Gateway
 from gaudencio_minigame import GaudencioMinigame
 from entrada import Entrada
 from multiusos import Multiusos
 from main_menu import MainMenu
+from uata import UATA
+from minigames.minigame2 import Minigame2
+
 
 screen = pygame.display.set_mode((1280, 720))
 
@@ -18,7 +13,8 @@ mainMenu = MainMenu(screen)
 multiusos = Multiusos(screen)
 entrada = Entrada(screen)
 gaudencioMinigame = GaudencioMinigame(screen)
-
+uata = UATA(screen)
+minigame2 = Minigame2(screen)
 
 mainMenu.load()
 nextCena = entrada.load()
@@ -34,6 +30,9 @@ while True:
         nextCena = uata.load()
     elif nextCena == "go to lab":
         nextCena = lab.load()
+    elif nextCena == "go to memoria":
+        nextCena = minigame2.load()
+    else: break
 
 
 
