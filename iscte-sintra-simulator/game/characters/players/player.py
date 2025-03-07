@@ -64,6 +64,11 @@ class Player:
     def check_collision(self, new_rect, colidables):
         for structure in colidables:
             if structure == self: continue
-            if new_rect.colliderect(structure):
-                return True  # Collision detected
+            
+            if isinstance(structure, pygame.Rect):
+                if structure.collidepoint(new_rect.midbottom): return True
+            elif structure.rect.collidepoint(new_rect.midbottom): return True
+
+            # if new_rect.colliderect(structure):
+            #     return True  # Collision detected
         return False  # No collision

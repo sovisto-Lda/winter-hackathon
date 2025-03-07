@@ -3,9 +3,9 @@ import pygame
 
 
 class Structure:
-    def __init__(self, x, y, image_path):
+    def __init__(self, x, y, image_path, scale_multiplier):
         self.image = pygame.image.load(image_path).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.image = pygame.transform.scale(self.image, (self.image.get_width() * scale_multiplier, self.image.get_height() * scale_multiplier))
 
         self.rect = self.image.get_rect(topleft=(x, y))  # Set position
 
