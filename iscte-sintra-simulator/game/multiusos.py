@@ -26,9 +26,9 @@ def Multiusos(screen):
 
     table1 = TableMultiusos(900, 500, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png")
 
-    player1 = Gaudencio(100, 250, "iscte-sintra-simulator/assets/images/gaudencio.png", (0,0,0))
+    player1 = Player(100, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0))
 
-    npc1 = NPC(150, 450, "iscte-sintra-simulator/assets/images/Fred.png", (0,0,0))
+    npc1 = NPC(150, 450, "iscte-sintra-simulator/assets/images/fred/Fred_front.png", (0,0,0))
 
     door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
 

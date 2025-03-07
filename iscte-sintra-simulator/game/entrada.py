@@ -6,6 +6,7 @@ from characters.npcs.npc import NPC
 from characters.npcs.seguranca import Seguranca
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
+from gaudencio_minigame import GaudencioMinigame
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,7 +28,7 @@ def Entrada(screen):
     rect = image.get_rect()  # Set position
     rect.topleft = (0, 0)  # Position at the top-left corner
 
-    player1 = Gaudencio(200, 250, "iscte-sintra-simulator/assets/images/gaudencio.png", (0,0,0))
+    player1 = Player(200, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0))
 
     npc1 = Seguranca(200, 180, "iscte-sintra-simulator/assets/images/seguranca.png", (0,0,0))
 
@@ -61,7 +62,8 @@ def Entrada(screen):
             npc1.open_dialog([player1], screen)
 
             if door1.can_interact([player1], screen):
-                print('ola')
+                GaudencioMinigame(screen)
+                return
             
 
         if keys[pygame.K_x]:
