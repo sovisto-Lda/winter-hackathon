@@ -12,7 +12,7 @@ class Multiusos:
     def __init__(self, screen):
         self.screen = screen
 
-    def load(self):
+    def load(self, fromLab):
 
         pygame.init()
 
@@ -34,10 +34,12 @@ class Multiusos:
         table3 = TableMultiusos(755, 455, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
         table4 = TableMultiusos(755, 190, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
 
-        player1 = Player(1000, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-        player2 = Player(900, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
-
-
+        if (fromLab):
+            player1 = Player(170, 500, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
+            player2 = Player(170, 600, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
+        else:
+            player1 = Player(1000, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
+            player2 = Player(900, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
 
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
@@ -73,7 +75,7 @@ class Multiusos:
                     return "go to uata"
                 
                 if door3.can_interact([player1,player2], screen):
-                    return "go to lab"
+                    return "go to minigame1"
 
                     
 
