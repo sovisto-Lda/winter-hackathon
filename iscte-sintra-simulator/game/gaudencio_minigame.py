@@ -243,6 +243,6 @@ class ProgressBar:
 
 
 
-def load():
-    screen = pygame.display.set_mode((1280, 720))
-    GaudencioMinigame(screen)
+# def load():
+#     screen = pygame.display.set_mode((1280, 720))
+#     GaudencioMinigame(screen)
