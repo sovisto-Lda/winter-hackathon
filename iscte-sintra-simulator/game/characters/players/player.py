@@ -26,7 +26,6 @@ class Player:
         self.projectiles = []  # Initialize projectiles
         self.health = 100  # Initialize health
         self.orientation = "D"
-
         self.num = num
 
     def draw(self, screen):
