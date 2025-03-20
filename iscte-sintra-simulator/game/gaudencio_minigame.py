@@ -35,11 +35,8 @@ class GaudencioMinigame:
         maxpoints = 10000
 
         player1_progress_bar = ProgressBar(x=300, y=675, width=200, height=20, max_points=maxpoints)
-        player2_progress_bar = ProgressBar(x=1280-300-200, y=675, width=200, height=20, max_points=maxpoints)
 
         player1_points = 0
-
-
 
         popup_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/gaudencio1.png").convert_alpha()
         popup_image = pygame.transform.scale(popup_image, (int(popup_image.get_width() * .85), int(popup_image.get_height() * .85)))
@@ -79,17 +76,6 @@ class GaudencioMinigame:
                         if player1_points < 0: player1_points = 0
                         player1_progress_bar.update(player1_points)
 
-            if keys[pygame.K_RETURN]:
-                if not player2_points >= maxpoints:
-                    if gaudencio.orientation == "U":
-                        player2_points += 15
-                        player2_progress_bar.update(player2_points)
-                    else:
-                        player2_points -= 25
-                        if player2_points < 0: player2_points = 0
-                        player2_progress_bar.update(player2_points)
-
-
             
             screen.blit(bg_image, bg_rect)
             gaudencio.move(screen)
@@ -97,9 +83,8 @@ class GaudencioMinigame:
             gaudencio.draw(screen)
 
             player1_progress_bar.draw(screen)
-            player2_progress_bar.draw(screen)
 
-            if(player1_points >= maxpoints and player2_points >= maxpoints):
+            if(player1_points >= maxpoints):
                 print('Felicidade')
 
                 dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/fimDoDia2.png").convert_alpha()
