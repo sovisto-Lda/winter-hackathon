@@ -36,10 +36,8 @@ class Multiusos:
 
         if (fromLab):
             player1 = Player(170, 500, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-            player2 = Player(170, 600, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
         else:
             player1 = Player(1000, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-            player2 = Player(900, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
 
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
@@ -67,21 +65,20 @@ class Multiusos:
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                if door1.can_interact([player1, player2], screen):
+                if door1.can_interact(player1, screen):
                     print('rabo')
                     return "go to entrada"
                 
-                if door2.can_interact([player1, player2], screen):
+                if door2.can_interact(player1, screen):
                     return "go to uata"
                 
-                if door3.can_interact([player1,player2], screen):
+                if door3.can_interact(player1, screen):
                     return "go to minigame1"
 
                     
 
         
             player1.move(keys, colidables)
-            player2.move(keys, colidables)
 
             pygame.draw.rect(screen, (255, 255, 255), blocker0)
             pygame.draw.rect(screen, (255, 255, 255), blocker1)
@@ -98,7 +95,6 @@ class Multiusos:
             table3.draw(screen)
             table4.draw(screen)
             player1.draw(screen)
-            player2.draw(screen)
 
 
             pygame.display.flip()

@@ -28,7 +28,6 @@ class LAB:
         rect.topleft = (0, 0)  # Position at the top-left corner
 
         player1 = Player(1003, 537, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-        player2 = Player(1129, 538, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
 
         prof = StoraSov(100, 100, "iscte-sintra-simulator/assets/images/StoraSOV.png", (0,0,0))        
         
@@ -54,7 +53,7 @@ class LAB:
 
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
             
-                if door1.can_interact([player1, player2], screen):
+                if door1.can_interact(player1, screen):
                     return "go to multiusos"
 
 
@@ -63,7 +62,6 @@ class LAB:
 
             
             player1.move(keys, colidables)
-            player2.move(keys, colidables)
 
 
             pygame.draw.rect(screen, (255, 255, 255), blocker0)
@@ -74,10 +72,8 @@ class LAB:
 
             door1.draw(screen)
             player1.draw(screen)
-            player2.draw(screen)
             prof.draw(screen)
 
-            # edoor1.interact([player1, player2], screen)
 
             pygame.display.flip()
 

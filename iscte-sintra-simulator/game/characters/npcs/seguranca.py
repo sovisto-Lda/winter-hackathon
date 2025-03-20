@@ -13,8 +13,8 @@ class Seguranca(NPC):
     
 
 
-    def interact(self, players, screen):
-        if not (self.checkProximity(players, screen)): return
+    def interact(self, player, screen):
+        if not (self.checkProximity(player, screen)): return
 
         if self.openDialog:
             dialog = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/seg1.png").convert_alpha()

@@ -3,13 +3,10 @@ import pygame
 from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
 from characters.npcs.npc import NPC
-from structures.static_structures.table_multiusos import TableMultiusos
-
 
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
-# def GaudencioMinigame(screen):
 class GaudencioMinigame:
     def __init__(self, screen):
         self.screen = screen
@@ -41,9 +38,6 @@ class GaudencioMinigame:
         player2_progress_bar = ProgressBar(x=1280-300-200, y=675, width=200, height=20, max_points=maxpoints)
 
         player1_points = 0
-        player2_points = 0
-
-        #popup_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/gaudencio_minigame_dialog.png").convert_alpha()
 
 
 

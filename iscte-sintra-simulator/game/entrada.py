@@ -33,7 +33,6 @@ class Entrada:
         rect.topleft = (0, 0)  # Position at the top-left corner
 
         player1 = Player(850, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-        player2 = Player(750, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 2)
 
         npc1 = Seguranca(200, 180, "iscte-sintra-simulator/assets/images/seguranca.png", (0,0,0))
 
@@ -62,21 +61,20 @@ class Entrada:
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                npc1.open_dialog([player1, player2], screen)
+                npc1.open_dialog(player1, screen)
 
-                if door1.can_interact([player1, player2], screen):
+                if door1.can_interact(player1, screen):
                     return "go to gaudencio"
                 
-                if door2.can_interact([player1, player2], screen):
+                if door2.can_interact(player1, screen):
                     return "go to multiusos"
                     
                 
 
             if keys[pygame.K_x]:
-                npc1.close_dialog([player1, player2], screen)
+                npc1.close_dialog(player1, screen)
             
             player1.move(keys, colidables)
-            player2.move(keys, colidables)
 
 
             pygame.draw.rect(screen, (255, 255, 255), blocker1)
@@ -88,10 +86,9 @@ class Entrada:
 
             npc1.draw(screen)
             player1.draw(screen)
-            player2.draw(screen)
 
 
-            npc1.interact([player1, player2], screen)
+            npc1.interact(player1, screen)
 
             pygame.display.flip()
 

@@ -1,6 +1,5 @@
 import pygame
 from ..structure import Structure
-#from ...minigames.test_minigame import testMinigame
 
 
 class InteractiveStructure(Structure):
@@ -12,16 +11,15 @@ class InteractiveStructure(Structure):
 
         self.isInteracting = False
 
-    def checkProximity(self, players):
-        for player in players:
-            dx = player.rect.centerx - self.rect.centerx
-            dy = player.rect.centery - self.rect.centery
+    def checkProximity(self, player):
+        dx = player.rect.centerx - self.rect.centerx
+        dy = player.rect.centery - self.rect.centery
 
-            if (dx*dx + dy*dy < 10000): 
-                self.isInteracting = True
-                return True
-            else: 
-                self.isInteracting = False
+        if (dx*dx + dy*dy < 10000): 
+            self.isInteracting = True
+            return True
+        else: 
+            self.isInteracting = False
         return False
 
     def interact(self):
