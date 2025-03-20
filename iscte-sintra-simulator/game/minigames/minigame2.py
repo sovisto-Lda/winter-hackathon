@@ -1,4 +1,6 @@
 import pygame
+import random
+import time
 
 # Initialize pygame
 pygame.init()
@@ -6,7 +8,6 @@ pygame.init()
 # Screen settings
 WIDTH, HEIGHT = 1280, 720
 WHITE, BLACK, GREEN, RED = (255, 255, 255), (0, 0, 0), (119, 221, 119), (255, 105, 97)
-
 FONT = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 16)
 
 # Create game window
@@ -21,16 +22,14 @@ RESTRICTED_KEYS = {
 }
 
 #Partida 1
-sequence_p1 = ""  # Para a sequencia do player 1
-player_input_p2 = ""  # Para a tentativa do player 2
-
-#Partida 2g
-sequence_p2 = ""  # Para a sequencia do player 2
-player_input_p1 = ""  # Para a tentativa do player 1
-
-score_p1, score_p2 = 0, 0 
-game_phase = "rules"  # "input" → "repeat" → "result"
+sequence = "" 
+player_input = ""
+game_phase = "show_sequence"
+score = 0
 result_message = ""
+
+def generate_sequence(length=5):
+    return "".join(random.choices("ABCDEFG12345", k=length))
 
 
 def draw_text(text, x, y, color=BLACK):
@@ -65,10 +64,12 @@ class Minigame2:
         self.screen = screen
     
     def load(self):
-        global game_phase, sequence_p1, sequence_p2, player_input_p1, player_input_p2, score_p1, score_p2, result_message
+        global game_phase, sequence, player_input, score, result_message
 
         clock = pygame.time.Clock()
         running = True
+        
+        sequence = generate_sequence()
         
         image0 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_explain.png").convert_alpha()
         image1 = pygame.image.load("iscte-sintra-simulator/assets/images/minigame2/minigame2_1.png").convert_alpha()
@@ -80,8 +81,6 @@ class Minigame2:
         image0 = pygame.transform.scale(image0, (WIDTH, HEIGHT))
         image1 = pygame.transform.scale(image1, (WIDTH, HEIGHT))
         image2 = pygame.transform.scale(image2, (WIDTH, HEIGHT))
-        image3 = pygame.transform.scale(image3, (WIDTH, HEIGHT))
-        image4 = pygame.transform.scale(image4, (WIDTH, HEIGHT))
         image5 = pygame.transform.scale(image5, (WIDTH, HEIGHT))
         
 
@@ -93,14 +92,10 @@ class Minigame2:
             if game_phase == "rules":
                 screen.blit(image0,(0,0))
             # Draw background image based on game phase
-            elif game_phase == "input_p1":
-                screen.blit(image1, (0, 0))  # Show image1 for input_p1
-            elif game_phase == "repeat_p2":
-                screen.blit(image2, (0, 0))  # Show image2 for repeat_p2
-            elif game_phase == "input_p2":
-                screen.blit(image3, (0, 0))  # Show image3 for input_p2
-            elif game_phase == "repeat_p1":
-                screen.blit(image4, (0, 0))  # Show image4 for repeat_p1
+            elif game_phase == "show_sequence":
+                screen.blit(image1, (0, 0)) 
+            elif game_phase == "repeat":
+                screen.blit(image2, (0, 0))  
             elif game_phase == "results":
                 screen.blit(image5,(0,0))
             
@@ -111,52 +106,30 @@ class Minigame2:
                 
                 if game_phase == "rules" and event.type ==pygame.KEYDOWN:
                     if event.key== pygame.K_SPACE:
-                        game_phase ="input_p1"
+                        game_phase ="show_sequence"
                         
                 # Player 1 inputs sequence
-                if game_phase == "input_p1" and event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and sequence_p1:  # Press space to end player 1 sequence
+                if game_phase == "show_sequence" and event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE and sequence:  # Press space to end player 1 sequence
                         # open_dialog(screen);
-                        game_phase = "repeat_p2"
-                        player_input_p2 = ""
+                        game_phase = "repeat"
+                        player_input = ""
 
                     elif event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
-                        sequence_p1 += event.unicode
+                        sequence += event.unicode
                 
-                elif game_phase == "repeat_p2" and event.type == pygame.KEYDOWN:
+                elif game_phase == "repeat" and event.type == pygame.KEYDOWN:
                     if event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
-                        player_input_p2 += event.unicode
+                        player_input += event.unicode
                         
                         # Check if Player 2 made a mistake
-                        if player_input_p2 != sequence_p1[:len(player_input_p2)]:
-                            score_p1 += 1
-                            game_phase = "input_p2"
-                            sequence_p2 = ""
-                            
-                        elif player_input_p2 == sequence_p1:
-                            
-                            game_phase = "input_p2"
-
-                            sequence_p2 = ""  # Reset for next round
-                    
-                elif game_phase == "input_p2" and event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and sequence_p2:  # End input
-                        game_phase = "repeat_p1"
-                        player_input_p1 = ""
-                    elif event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
-                        sequence_p2 += event.unicode  # Store input (but don't display it)
-
-                # Phase 4: Player 1 tries to repeat sequence_p2
-                elif game_phase == "repeat_p1" and event.type == pygame.KEYDOWN:
-                    if event.key not in RESTRICTED_KEYS and event.unicode.isprintable():
-                        player_input_p1 += event.unicode
-
-                        # Check if Player 1 made a mistake
-                        if player_input_p1 != sequence_p2[:len(player_input_p1)]:
-                            score_p2 += 1  # Player 2 wins this round
+                        if player_input != sequence[:len(player_input)]:
+                            score += 1
                             game_phase = "results"
-                        elif player_input_p1 == sequence_p2:
+                            
+                        elif player_input == sequence:
                             game_phase = "results"
+
                             
                 elif game_phase == "results" and event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
@@ -164,26 +137,18 @@ class Minigame2:
 
 
             if game_phase == "results":
-                if score_p1 > score_p2:
-                    result_message = "O jogador 1 ganha! Uma Sweat Iscte-Sintra para ti J1"
-                elif score_p1 < score_p2:
-                    result_message = "O jogador 2 ganha! Uma Sweat Iscte-Sintra para ti J2"
+                if score > 0:
+                    result_message = "Ganhaste! Uma Sweat Iscte-Sintra para ti J1"
                 else:
-                    result_message = "Empate, ninguem recebe nada..."
+                    result_message = "Perdeste... É uma pena!   "
             # UI Drawing
 
-            if game_phase == "input_p1":
-                draw_text(sequence_p1, 500, 250)
+            if game_phase == "sequence":
+                draw_text(sequence, 500, 250)
 
-            elif game_phase == "repeat_p2":
-                draw_text(player_input_p2, 500, 250)
-
-            elif game_phase == "input_p2":
-                draw_text(sequence_p2, 500, 250)
-
-            elif game_phase == "repeat_p1":
-                draw_text(player_input_p1, 500, 250)
-
+            elif game_phase == "repeat":
+                draw_text(player_input, 500, 250)
+        
             elif game_phase == "results":
                 draw_text(result_message, 200, 300)
                 
