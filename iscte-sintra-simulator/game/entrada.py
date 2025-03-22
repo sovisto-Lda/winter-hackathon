@@ -6,7 +6,7 @@ from characters.npcs.npc import NPC
 from characters.npcs.seguranca import Seguranca
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
-from gaudencio_minigame import GaudencioMinigame
+from minigames.gaudencio_minigame import GaudencioMinigame
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 

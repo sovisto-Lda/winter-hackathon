@@ -1,16 +1,16 @@
 import pygame
-from gaudencio_minigame import GaudencioMinigame
+from minigames.gaudencio_minigame import GaudencioMinigame
 from entrada import Entrada
 from multiusos import Multiusos
 from main_menu import MainMenu
 from uata import UATA
 from minigames.minigame2 import Minigame2
-from minigames.mini_game_1 import Minigame1
+from minigames.mini_game_1 import Minigame
 from salaLab import LAB
 
 pygame.mixer.init()
 pygame.mixer.music.load("iscte-sintra-simulator/assets/sound/music/ewigmusic.mp3")  # Load the file
-pygame.mixer.music.play(-1)  # Play indefinitely (-1 loops)
+pygame.mixer.music.play(-1)  # Play indefinitely (-1 loops) 
 
 pygame.mixer.music.set_volume(1)  # Volume (0.0 to 1.0)
 
