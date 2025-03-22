@@ -13,7 +13,7 @@ pygame.mixer.init()
 pygame.mixer.music.load("iscte-sintra-simulator/assets/sound/music/ewigmusic.mp3")  # Load the file
 pygame.mixer.music.play(-1)  # Play indefinitely (-1 loops) 
 
-pygame.mixer.music.set_volume(1)  # Volume (0.0 to 1.0)
+pygame.mixer.music.set_volume(0.03)  # Volume (0.0 to 1.0)
 
 screen = pygame.display.set_mode((1280, 720))
 player1 = Player(850, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
