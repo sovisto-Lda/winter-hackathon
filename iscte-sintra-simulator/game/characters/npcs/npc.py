@@ -50,7 +50,6 @@ class NPC:
     
 
 
-
     def checkProximity(self, player, screen):
         dx = player.rect.centerx - self.rect.centerx
         dy = player.rect.centery - self.rect.centery

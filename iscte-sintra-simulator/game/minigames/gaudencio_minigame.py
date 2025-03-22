@@ -1,8 +1,6 @@
 import os
 import pygame
-from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
-from characters.npcs.npc import NPC
 
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
