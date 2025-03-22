@@ -42,6 +42,8 @@ class Multiusos:
             self.player1.x = 1000
             self.player1.y = 150
 
+        self.player1.change_rect(self.player1.x, self.player1.y)
+
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
         door3 = Gateway(59, 587, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
@@ -98,6 +100,7 @@ class Multiusos:
             table3.draw(screen)
             table4.draw(screen)
             self.player1.draw(self.screen)
+            Player.draw_score(self.player1, self.screen)
 
 
             pygame.display.flip()

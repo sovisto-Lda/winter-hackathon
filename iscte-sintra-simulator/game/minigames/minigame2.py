@@ -21,8 +21,9 @@ def generate_sequence(length=5):
 
 
 class Minigame2:
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
         
     def draw_text(self, text, x, y, color=BLACK):
         screen.blit(FONT.render(text, True, color), (x, y))

@@ -35,6 +35,9 @@ class Player:
         self.image = pygame.transform.scale(self.image, PLAYER_SIZE)  # Resize
         screen.blit(self.image, self.rect)  # Draw player image
 
+    def change_rect(self, x, y):
+        self.rect = self.image.get_rect(topleft=(x, y))
+
     def setImage(self):
         if self.num == 1:
             if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_back.png").convert_alpha()
@@ -112,3 +115,12 @@ class Player:
     
     def reset_score(self):
         self.score = 0
+
+    @staticmethod
+    def draw_score(player1, screen):
+        font = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
+        coin_image = pygame.image.load("iscte-sintra-simulator/assets/images/coin.png").convert_alpha()
+        coin_image = pygame.transform.scale(coin_image, (30, 30))
+        score_text = font.render(f"{player1.get_score()}", True, (0, 0, 0))
+        screen.blit(score_text, (20, 20))
+        screen.blit(coin_image, (score_text.get_width() + 30, 20))

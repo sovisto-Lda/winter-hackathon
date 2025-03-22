@@ -1,8 +1,9 @@
 import pygame
 
 class Minigame1:
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
 
     def load(self):
 

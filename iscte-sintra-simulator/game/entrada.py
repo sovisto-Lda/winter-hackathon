@@ -75,6 +75,7 @@ class Entrada:
             
             self.player1.move(keys, colidables)
 
+            Player.draw_score(self.player1, self.screen)
 
             pygame.draw.rect(screen, (255, 255, 255), blocker1)
             pygame.draw.rect(screen, (255, 255, 255), blocker2)
@@ -85,7 +86,7 @@ class Entrada:
 
             npc1.draw(screen)
             self.player1.draw(self.screen)
-
+            Player.draw_score(self.player1, self.screen)
 
             npc1.interact(self.player1, self.screen)
 
@@ -95,5 +96,3 @@ class Entrada:
 
 
         pygame.quit()
-
-

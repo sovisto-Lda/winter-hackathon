@@ -7,8 +7,9 @@ from characters.npcs.storasov import StoraSov
 
 
 class LAB:
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
 
     def load(self):
 
@@ -53,7 +54,7 @@ class LAB:
 
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
             
-                if door1.can_interact(player1, screen):
+                if door1.can_interact(self.player1, screen):
                     return "go to multiusos"
 
 
@@ -71,7 +72,8 @@ class LAB:
             screen.blit(image, rect)  # Draw player image
 
             door1.draw(screen)
-            player1.draw(screen)
+            self.player1.draw(self.screen)
+            Player.draw_score(self.player1, self.screen)
             prof.draw(screen)
 
 

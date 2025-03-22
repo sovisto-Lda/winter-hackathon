@@ -21,14 +21,15 @@ player1 = Player(850, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaude
 mainMenu = MainMenu(screen, player1)
 multiusos = Multiusos(screen, player1)
 entrada = Entrada(screen, player1)
-gaudencioMinigame = GaudencioMinigame(screen)
-uata = UATA(screen)
-minigame2 = Minigame2(screen)
-lab = LAB(screen)
-minigame1 = Minigame1(screen)
+gaudencioMinigame = GaudencioMinigame(screen, player1)
+uata = UATA(screen, player1)
+minigame2 = Minigame2(screen, player1)
+lab = LAB(screen, player1)
+minigame1 = Minigame1(screen, player1)
 
 mainMenu.load()
 nextCena = entrada.load()
+
 
 while True:
     if nextCena == "go to gaudencio":
@@ -48,6 +49,3 @@ while True:
     elif nextCena == "go to minigame1":
         nextCena = minigame1.load()
     else: break
-
-
-

@@ -7,8 +7,9 @@ from characters.npcs.fred import Fred
 
 
 class UATA:
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
 
     def load(self):
 
@@ -52,14 +53,14 @@ class UATA:
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                fred.open_dialog(player1, screen)
+                fred.open_dialog(self.player1, screen)
                 
-                if door1.can_interact(player1, screen):
+                if door1.can_interact(self.player1, screen):
                     return "go to multiusos"
 
 
             if keys[pygame.K_x]:
-                fred.close_dialog(player1, screen)
+                fred.close_dialog(self.player1, screen)
                 
                 return "go to memoria"
             
@@ -74,7 +75,8 @@ class UATA:
 
             door1.draw(screen)
             fred.draw(screen)
-            player1.draw(screen)
+            self.player1.draw(self.screen)
+            Player.draw_score(self.player1, self.screen)
 
             fred.interact(player1, screen)
 
