@@ -14,6 +14,8 @@ PROJECTILE_SPEED = 7
 
 class Player:
     def __init__(self, x, y, image_path, color, num):
+
+        self.score = 0
         try:
             self.image = pygame.image.load(image_path).convert_alpha()  # Load image safely
             self.image = pygame.transform.scale(self.image, PLAYER_SIZE)  # Resize
@@ -101,3 +103,12 @@ class Player:
             # if new_rect.colliderect(structure):
             #     return True  # Collision detected
         return False  # No collision
+    
+    def add_score(self, amount):
+        self.score += amount
+
+    def get_score(self):
+        return self.score
+    
+    def reset_score(self):
+        self.score = 0

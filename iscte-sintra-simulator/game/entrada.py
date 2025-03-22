@@ -13,8 +13,9 @@ os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
 
 class Entrada:
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
 
     def load(self):
         pygame.init()
@@ -31,8 +32,6 @@ class Entrada:
 
         rect = image.get_rect()  # Set position
         rect.topleft = (0, 0)  # Position at the top-left corner
-
-        player1 = Player(850, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
 
         npc1 = Seguranca(200, 180, "iscte-sintra-simulator/assets/images/seguranca.png", (0,0,0))
 
@@ -61,20 +60,20 @@ class Entrada:
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                npc1.open_dialog(player1, screen)
+                npc1.open_dialog(self.player1, screen)
 
-                if door1.can_interact(player1, screen):
+                if door1.can_interact(self.player1, screen):
                     return "go to gaudencio"
                 
-                if door2.can_interact(player1, screen):
+                if door2.can_interact(self.player1, screen):
                     return "go to multiusos"
                     
                 
 
             if keys[pygame.K_x]:
-                npc1.close_dialog(player1, screen)
+                npc1.close_dialog(self.player1, screen)
             
-            player1.move(keys, colidables)
+            self.player1.move(keys, colidables)
 
 
             pygame.draw.rect(screen, (255, 255, 255), blocker1)
@@ -85,10 +84,10 @@ class Entrada:
 
 
             npc1.draw(screen)
-            player1.draw(screen)
+            self.player1.draw(self.screen)
 
 
-            npc1.interact(player1, screen)
+            npc1.interact(self.player1, self.screen)
 
             pygame.display.flip()
 

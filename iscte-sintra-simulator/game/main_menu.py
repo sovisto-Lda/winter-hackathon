@@ -8,8 +8,9 @@ os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
 class MainMenu:
 
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
     
     def load(self):
 
@@ -66,7 +67,7 @@ class MainMenu:
 
                         self.introDialog(screen)
 
-                        Entrada(screen)
+                        Entrada(screen, self.player1)
                         return
                     if exit_game_rect.collidepoint(event.pos):
                         print("sair")

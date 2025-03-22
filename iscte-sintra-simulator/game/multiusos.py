@@ -9,8 +9,9 @@ from entrada import Entrada
 
 
 class Multiusos:
-    def __init__(self, screen):
+    def __init__(self, screen, player1):
         self.screen = screen
+        self.player1 = player1
 
     def load(self, fromLab):
 
@@ -35,9 +36,11 @@ class Multiusos:
         table4 = TableMultiusos(755, 190, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
 
         if (fromLab):
-            player1 = Player(170, 500, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
+            self.player1.x = 170
+            self.player1.y = 500
         else:
-            player1 = Player(1000, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
+            self.player1.x = 1000
+            self.player1.y = 150
 
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
@@ -65,20 +68,20 @@ class Multiusos:
 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                if door1.can_interact(player1, screen):
+                if door1.can_interact(self.player1, screen):
                     print('rabo')
                     return "go to entrada"
                 
-                if door2.can_interact(player1, screen):
+                if door2.can_interact(self.player1, screen):
                     return "go to uata"
                 
-                if door3.can_interact(player1, screen):
+                if door3.can_interact(self.player1, screen):
                     return "go to minigame1"
 
                     
 
         
-            player1.move(keys, colidables)
+            self.player1.move(keys, colidables)
 
             pygame.draw.rect(screen, (255, 255, 255), blocker0)
             pygame.draw.rect(screen, (255, 255, 255), blocker1)
@@ -94,7 +97,7 @@ class Multiusos:
             table2.draw(screen)
             table3.draw(screen)
             table4.draw(screen)
-            player1.draw(screen)
+            self.player1.draw(self.screen)
 
 
             pygame.display.flip()
