@@ -5,7 +5,7 @@ from multiusos import Multiusos
 from main_menu import MainMenu
 from uata import UATA
 from minigames.minigame2 import Minigame2
-from minigames.mini_game_1 import Minigame
+from minigames.mini_game_1 import Minigame1
 from salaLab import LAB
 from characters.players.player import Player
 
