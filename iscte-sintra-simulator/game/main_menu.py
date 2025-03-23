@@ -67,8 +67,10 @@ class MainMenu:
 
                         self.introDialog(screen)
 
+
                         Entrada(screen, self.player1)
                         return
+                        
                     if exit_game_rect.collidepoint(event.pos):
                         print("sair")
                         exit()
@@ -148,8 +150,9 @@ class MainMenu:
                         print(event.pos)
                     
                         if play2_game_rect.collidepoint(event.pos):
+                            running2= False
 
-                            return
+                            return 
 
                     if event.type == pygame.QUIT:
                         running2 = False   
