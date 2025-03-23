@@ -127,6 +127,8 @@ class DayManager:
                         print(self.get_current_day())
                         if self.get_current_day() == 1:
                             return "play cutscene 1"  # Transition to the next scene
+                        elif self.get_current_day() == 2:
+                            return "play cutscene 3"
                         else:
                             return "go to entrada"
         

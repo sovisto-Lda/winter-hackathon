@@ -81,5 +81,9 @@ while True:
     elif nextCena == "play cutscene 2":
         cutscene = Cutscene(screen, 2)
         nextCena = cutscene.load()
+
+    elif nextCena == "play cutscene 3":
+        cutscene = Cutscene(screen, 3)
+        nextCena = cutscene.load()
         
     else: break
