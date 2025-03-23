@@ -108,15 +108,19 @@ class Cutscene:
 
         filme4_4 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_4.png", True)
 
-        filme4_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_5.png", False)
+        filme4_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_5.png", True)
 
-        filme4_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_6.png", True)
+        filme4_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_6.png", False)
 
-        filme4_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_7.png", False)
+        filme4_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_7.png", True)
 
         filme4_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_8.png", True)
 
         filme4_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_9.png", False)
+
+        filme4_10 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_10.png", True)
+
+        filme4_11 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_11.png", False)
         
 
         
@@ -176,7 +180,9 @@ class Cutscene:
                 filme4_6,
                 filme4_7,
                 filme4_8,
-                filme4_9
+                filme4_9,
+                filme4_10,
+                filme4_11
             ]
 
         return self.images
