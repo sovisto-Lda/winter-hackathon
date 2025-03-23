@@ -9,6 +9,7 @@ from minigames.mini_game_1 import Minigame1
 from salaLab import LAB
 from characters.players.player import Player
 from day_manager import DayManager
+from scenes.cut_scene import Cutscene
 
 # Musica
 pygame.mixer.init()
@@ -28,7 +29,6 @@ minigame2 = Minigame2(screen, player1)
 lab = LAB(screen, player1)
 minigame1 = Minigame1(screen, player1)
 day_manager = DayManager(1)
-
 
 mainMenu.load()
 nextCena = day_manager.show_begin_day()
@@ -73,5 +73,9 @@ while True:
         
     elif nextCena == "inicio do dia":
         nextCena = day_manager.show_begin_day()
+    
+    elif nextCena == "play cutscreen 1":
+        cutscene = Cutscene(screen, 1)
+        nextCena = cutscene.load()
         
     else: break

@@ -120,5 +120,5 @@ class DayManager:
                     print(event.pos)
                     if start_game_rect.collidepoint(event.pos):
                         print("Comecar")
-                        return "go to entrada - day begin"  # Transition to the next scene
+                        return "play cutscreen 1"  # Transition to the next scene
         
