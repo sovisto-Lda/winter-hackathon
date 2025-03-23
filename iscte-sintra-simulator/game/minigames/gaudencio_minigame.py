@@ -20,6 +20,8 @@ class GaudencioMinigame:
 
         screen.fill((0,0,0))
 
+        start_time = pygame.time.get_ticks()
+
         #background
         bg_image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA AULA/ISS_Sala_Aula.png").convert_alpha()
         bg_image = pygame.transform.scale(bg_image, (int(bg_image.get_width() * 3), int(bg_image.get_height() * 3)))
@@ -85,6 +87,10 @@ class GaudencioMinigame:
 
             if(player1_points >= maxpoints):
                 print('Felicidade')
+
+                end_time = pygame.time.get_ticks()
+                elapsed_time = (end_time - start_time) / 1000
+                self.player1.score += max(10, int(200 - elapsed_time))
 
                 dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/fimDoDia2.png").convert_alpha()
 

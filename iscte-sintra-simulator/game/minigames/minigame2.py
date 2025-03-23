@@ -38,6 +38,7 @@ class Minigame2:
         
         clock = pygame.time.Clock()
         running = True
+        start_time = pygame.time.get_ticks()
         
         sequence = generate_sequence()
         
@@ -166,6 +167,9 @@ class Minigame2:
                         final_player_input = player_input
                         if final_player_input == sequence:
                             score +=1
+                            end_time = pygame.time.get_ticks()
+                            elapsed_time = (end_time - start_time) / 1000
+                            self.player1.score += max(10, int(200 - elapsed_time))
                         game_phase = "results"
                             
                 elif game_phase == "results" and event.type == pygame.MOUSEBUTTONDOWN:
