@@ -224,9 +224,3 @@ class ProgressBar:
 
         # Optional: Border
         pygame.draw.rect(screen, (255, 255, 255), (self.x, self.y, self.width, self.height), 2)
-
-
-
-# def load():
-#     screen = pygame.display.set_mode((1280, 720))
-#     GaudencioMinigame(screen)
