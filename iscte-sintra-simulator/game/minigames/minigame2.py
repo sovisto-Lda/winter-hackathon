@@ -60,7 +60,7 @@ class Minigame2:
         play_game_rect.centery = 512
         
         #Submit button
-        avancar_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/avancar_bota.png").convert_alpha()
+        avancar_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/avancar_bota.png").convert_alpha()
         avancar_game_image = pygame.transform.scale(avancar_game_image, (int(avancar_game_image.get_width() * .75), int(avancar_game_image.get_height() * .75)))
         avancar_game_rect = avancar_game_image.get_rect()  # Set position
         avancar_game_rect.centerx = 636
@@ -105,10 +105,10 @@ class Minigame2:
                 play_game_image = pygame.transform.scale(play_game_image, (int(play_game_image.get_width() * .75), int(play_game_image.get_height() * .75)))
             
             if avancar_game_rect.collidepoint(mouse_pos):
-                avancar_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/avancar_botao_pressed.png").convert_alpha()
+                avancar_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/avancar_botao_pressed.png").convert_alpha()
                 avancar_game_image = pygame.transform.scale(avancar_game_image, (int(avancar_game_image.get_width() * .75), int(avancar_game_image.get_height() * .75)))
             else:
-                avancar_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/avancar_bota.png").convert_alpha()
+                avancar_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/avancar_bota.png").convert_alpha()
                 avancar_game_image = pygame.transform.scale(avancar_game_image, (int(avancar_game_image.get_width() * .75), int(avancar_game_image.get_height() * .75)))
             
             if exit_game_rect.collidepoint(mouse_pos):

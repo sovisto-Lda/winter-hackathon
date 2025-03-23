@@ -30,7 +30,7 @@ class Entrada:
         rect = image.get_rect()  # Set position
         rect.topleft = (0, 0)  # Position at the top-left corner
 
-        npc1 = Seguranca(200, 180, "iscte-sintra-simulator/assets/images/seguranca.png", (0,0,0))
+        npc1 = Seguranca(200, 180, "iscte-sintra-simulator/assets/images/characters/seguranca.png", (0,0,0))
 
         blocker1 = pygame.Rect(0, 0, 1280, 160)
         blocker2 = pygame.Rect(0, 620, 1280, 150)

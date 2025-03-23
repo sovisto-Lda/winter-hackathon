@@ -1,11 +1,8 @@
 import os
 import pygame
 from characters.players.player import Player
-from characters.players.gaudencio import Gaudencio
-from characters.npcs.npc import NPC
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
-from entrada import Entrada
 
 
 class Multiusos:

@@ -34,7 +34,7 @@ class DayManager:
         
         
         #nextday button
-        nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/dia seguinte.png").convert_alpha()
+        nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte.png").convert_alpha()
         nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
         nextday_rect = nextday_image.get_rect()  # Set position
         nextday_rect.centerx = 640
@@ -49,10 +49,10 @@ class DayManager:
         mouse_pos = pygame.mouse.get_pos()
     
         if nextday_rect.collidepoint(mouse_pos):
-            nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/dia seguinte_pressed.png").convert_alpha()
+            nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte_pressed.png").convert_alpha()
             nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
         else:
-            nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/dia seguinte.png").convert_alpha()
+            nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte.png").convert_alpha()
             nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
             clock.tick(30)
         while running:
@@ -83,7 +83,7 @@ class DayManager:
         
         
         #start button
-        start_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/comecar.png").convert_alpha()
+        start_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/comecar.png").convert_alpha()
         start_game_image = pygame.transform.scale(start_game_image, (int(start_game_image.get_width() * .75), int(start_game_image.get_height() * .75)))
         start_game_rect = start_game_image.get_rect()  # Set position
         start_game_rect.centerx = 640
@@ -108,10 +108,10 @@ class DayManager:
             mouse_pos = pygame.mouse.get_pos()
         
             if start_game_rect.collidepoint(mouse_pos):
-                start_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/comecar_pressed.png").convert_alpha()
+                start_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/comecar_pressed.png").convert_alpha()
                 start_game_image = pygame.transform.scale(start_game_image, (int(start_game_image.get_width() * .75), int(start_game_image.get_height() * .75)))
             else:
-                start_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/comecar.png").convert_alpha()
+                start_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/comecar.png").convert_alpha()
                 start_game_image = pygame.transform.scale(start_game_image, (int(start_game_image.get_width() * .75), int(start_game_image.get_height() * .75)))
                 clock.tick(30)
             

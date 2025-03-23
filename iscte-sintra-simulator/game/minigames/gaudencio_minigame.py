@@ -26,7 +26,7 @@ class GaudencioMinigame:
         bg_rect = bg_image.get_rect()  # Set position
         bg_rect.topleft = (200,70)
 
-        gaudencio = Gaudencio(380, 160, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_front.png", (0,0,0))
+        gaudencio = Gaudencio(380, 160, "iscte-sintra-simulator/assets/images/characters/gaudencio/gaudencio_front.png", (0,0,0))
 
         myfont = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
         titleText = myfont.render('Copia BEM!', False, (220, 220, 220))

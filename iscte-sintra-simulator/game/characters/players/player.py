@@ -40,15 +40,15 @@ class Player:
 
     def setImage(self):
         if self.num == 1:
-            if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_back.png").convert_alpha()
-            elif self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_front.png").convert_alpha()
-            elif self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_left.png").convert_alpha()
-            elif self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_right.png").convert_alpha()
+            if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_back.png").convert_alpha()
+            elif self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_front.png").convert_alpha()
+            elif self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_left.png").convert_alpha()
+            elif self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_right.png").convert_alpha()
         elif self.num == 2:
-            if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default2/Default2_back.png").convert_alpha()
-            elif self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default2/Default2_front.png").convert_alpha()
-            elif self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default2/Default2_left.png").convert_alpha()
-            elif self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/Default2/Default2_right.png").convert_alpha()
+            if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default2/Default2_back.png").convert_alpha()
+            elif self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default2/Default2_front.png").convert_alpha()
+            elif self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default2/Default2_left.png").convert_alpha()
+            elif self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default2/Default2_right.png").convert_alpha()
 
     def move(self, keys, colidables):
         if self.num == 1:
