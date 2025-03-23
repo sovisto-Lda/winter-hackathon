@@ -6,7 +6,7 @@ PLAYER_SIZE = (100, 100)
 class Seguranca(NPC):
 
     def draw(self, screen):
-        self.image = pygame.image.load("iscte-sintra-simulator/assets/images/seguranca.png").convert_alpha()
+        self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/seguranca.png").convert_alpha()
 
         self.image = pygame.transform.scale(self.image, PLAYER_SIZE)  # Resize
         screen.blit(self.image, self.rect)  # Draw player image

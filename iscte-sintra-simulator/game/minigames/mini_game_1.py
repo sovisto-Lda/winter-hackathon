@@ -22,6 +22,8 @@ class Minigame1:
         BOXES_HEIGHT = 50
         DRAGGABLE_POSITIONX = 250
 
+        start_time = pygame.time.get_ticks()
+
         # Carregar o fundo
         bg_image = pygame.image.load("iscte-sintra-simulator/assets/images/Minigame1/minigame1.png").convert_alpha()
         bg_image = pygame.transform.scale(bg_image, (WIDTH, HEIGHT))
@@ -130,6 +132,9 @@ class Minigame1:
                 # Clicar no Submeter
                 if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                     if all_correct:
+                        end_time = pygame.time.get_ticks()
+                        elapsed_time = (end_time - start_time) / 1000
+                        self.player1.score += max(10, int(200 - elapsed_time))
                         running = False
                         return "go to multiusos - lab"
 

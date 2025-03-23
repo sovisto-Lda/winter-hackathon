@@ -83,7 +83,7 @@ class NPC:
         print(self.isInteracting)
         if (self.isInteracting == False): return
     
-        return
+        return 
     
     def open_dialog(self, players, screen):
         if self.checkProximity(players, screen): self.openDialog = True

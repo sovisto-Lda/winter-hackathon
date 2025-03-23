@@ -20,13 +20,15 @@ class GaudencioMinigame:
 
         screen.fill((0,0,0))
 
+        start_time = pygame.time.get_ticks()
+
         #background
         bg_image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA AULA/ISS_Sala_Aula.png").convert_alpha()
         bg_image = pygame.transform.scale(bg_image, (int(bg_image.get_width() * 3), int(bg_image.get_height() * 3)))
         bg_rect = bg_image.get_rect()  # Set position
         bg_rect.topleft = (200,70)
 
-        gaudencio = Gaudencio(380, 160, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_front.png", (0,0,0))
+        gaudencio = Gaudencio(380, 160, "iscte-sintra-simulator/assets/images/characters/gaudencio/gaudencio_front.png", (0,0,0))
 
         myfont = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
         titleText = myfont.render('Copia BEM!', False, (220, 220, 220))
@@ -68,7 +70,7 @@ class GaudencioMinigame:
             if keys[pygame.K_SPACE]:
                 if not player1_points >= maxpoints:
                     if gaudencio.orientation == "U":
-                        player1_points += 15
+                        player1_points += 100
                         player1_progress_bar.update(player1_points)
                     else:
                         player1_points -= 25
@@ -86,13 +88,17 @@ class GaudencioMinigame:
             if(player1_points >= maxpoints):
                 print('Felicidade')
 
+                end_time = pygame.time.get_ticks()
+                elapsed_time = (end_time - start_time) / 1000
+                self.player1.score += max(10, int(200 - elapsed_time))
+
                 dialog_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/fimDoDia2.png").convert_alpha()
 
                 dialog_image = pygame.transform.scale(dialog_image, (int(dialog_image.get_width() * .35), int(dialog_image.get_height() * .35)))
                 dialog_rect = bg_image.get_rect()  # Set position
                 dialog_rect.center = (570, 620/2 + 42)
 
-                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair.png").convert_alpha()
                 play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
                 play2_game_rect = play2_game_image.get_rect()  # Set position
                 play2_game_rect.centerx = 640
@@ -110,13 +116,14 @@ class GaudencioMinigame:
                         
                             if play2_game_rect.collidepoint(event.pos):
                                 running2 = False
+                                return "play cutscene 2"
 
 
                     if play2_game_rect.collidepoint(mouse_pos):
-                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar_pressed.png").convert_alpha()
+                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair_pressed.png").convert_alpha()
                         play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
                     else:
-                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair.png").convert_alpha()
                         play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
 
                     keys = pygame.key.get_pressed()
@@ -129,7 +136,6 @@ class GaudencioMinigame:
                     pygame.display.flip()
 
 
-                return "go to entrada"
 
 
             screen.blit(titleText, (525,25))
@@ -218,9 +224,3 @@ class ProgressBar:
 
         # Optional: Border
         pygame.draw.rect(screen, (255, 255, 255), (self.x, self.y, self.width, self.height), 2)
-
-
-
-# def load():
-#     screen = pygame.display.set_mode((1280, 720))
-#     GaudencioMinigame(screen)

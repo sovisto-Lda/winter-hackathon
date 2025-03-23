@@ -24,10 +24,10 @@ class Fred(NPC):
             
             
     def draw(self, screen):
-        if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/fred/Fred_back.png").convert_alpha()
-        if self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/fred/Fred_front.png").convert_alpha()
-        if self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/fred/FredOnThePhone_left.png").convert_alpha()
-        if self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png").convert_alpha()
+        if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/fred/Fred_back.png").convert_alpha()
+        if self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/fred/Fred_front.png").convert_alpha()
+        if self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/fred/FredOnThePhone_left.png").convert_alpha()
+        if self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/fred/FredOnThePhone_right.png").convert_alpha()
             
         self.image = pygame.transform.scale(self.image, PLAYER_SIZE)  # Resize
         screen.blit(self.image, self.rect)  # Draw player image
