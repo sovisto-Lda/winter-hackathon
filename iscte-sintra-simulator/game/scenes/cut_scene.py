@@ -71,6 +71,35 @@ class Cutscene:
         filme2_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_6.png", True)
         
         filme2_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_7.png", True)
+
+        #Filme 3
+        filme3_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_1.png", False)
+
+        filme3_2 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_2.png", False)
+
+        filme3_3 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_3.png", False)
+
+        filme3_4 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_4.png", False)
+
+        filme3_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_5.png", False)
+
+        filme3_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_6.png", False)
+
+        filme3_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_7.png", True)
+
+        filme3_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_8.png", False)
+
+        filme3_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_9.png", False)
+
+        filme3_10 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_10.png", False)
+
+        filme3_11 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_11.png", False)
+
+        filme3_12 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_12.png", False)
+
+        filme3_13 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_13.png", False)
+        
+
         
         if self.sceneNumber == 1:
             self.images = [
@@ -100,6 +129,23 @@ class Cutscene:
                 filme2_6,
                 filme2_7
             ]
+
+        elif self.sceneNumber == 3:
+            self.images = [
+                filme3_1,
+                filme3_2,
+                filme3_3,
+                filme3_4,
+                filme3_5,
+                filme3_6,
+                filme3_7,
+                filme3_8,
+                filme3_9,
+                filme3_10,
+                filme3_11,
+                filme3_12,
+                filme3_13
+            ]
             
         return self.images
     
@@ -120,6 +166,8 @@ class Cutscene:
                         return "go to entrada"    
                     elif self.sceneNumber == 2:
                         return "fim do dia"
+                    elif self.sceneNumber == 3:
+                        return "go to entrada"
             
             if self.current_frame < len(self.images):
                 frame = self.images[self.current_frame]
@@ -137,4 +185,7 @@ class Cutscene:
                     return "go to entrada - day begin"
                 
                 elif self.sceneNumber == 2:
-                        return "fim do dia"
+                    return "fim do dia"
+                
+                elif self.sceneNumber == 3:
+                    return "go to entrada - day begin"

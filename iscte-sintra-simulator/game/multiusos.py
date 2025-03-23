@@ -10,7 +10,7 @@ class Multiusos:
         self.screen = screen
         self.player1 = player1
         self.inUATACount = 0  # Move this to the class level so it persists across scenes
-        self.inLabCount = 1
+        self.inLabCount = 0
 
 
     def load(self, fromLab, fromUata, day):
