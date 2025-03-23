@@ -28,10 +28,10 @@ class UATA:
         rect = image.get_rect()  # Set position
         rect.topleft = (0, 0)  # Position at the top-left corner
 
-        player1 = Player(370, 200, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-
         fred = Fred(100, 100, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", (0,0,0))        
-        
+        self.player1.x = 474
+        self.player1.y = 228
+        self.player1.change_rect(self.player1.x, self.player1.y)
         door1 = Gateway(540,249, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", 0, screen)
 
         blocker0 = pygame.Rect(546, 0, 546, 600)
@@ -39,32 +39,40 @@ class UATA:
 
         colidables = [door1, blocker0, blocker1]
 
-
         while running:
+            keys = pygame.key.get_pressed()
+            screen.fill("white")
+            
             for event in pygame.event.get():
+                
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print(event.pos)
                 
                 if event.type == pygame.QUIT:
-                    running = False              
-
-            screen.fill("white")
-
-            keys = pygame.key.get_pressed()
-
-            if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
-                fred.open_dialog(self.player1, screen)
+                    running = False
                 
-                if door1.can_interact(self.player1, screen):
-                    return "go to multiusos"
+                if event.type == pygame.KEYDOWN:
+                    # Interaction with Fred
+                    if event.key == pygame.K_e and fred.checkProximity(self.player1, screen):
+                        print("Talking to Fred")
+                        fred.open_dialog(self.player1, screen)        
+                    
+                    # Interaction with Door
+                    elif event.key == pygame.K_e and door1.can_interact(self.player1, screen):
+                        print("Going back to Multiusos")
+                        return "go to multiusos"
+    
+                    # Close Dialog with Fred and start waiting mini game
+                    elif event.key == pygame.K_x:
+                        print("Closing Fred's Dialog")
+                        fred.close_dialog(self.player1, screen)
+                        return "go to memoria"
+                                
 
 
-            if keys[pygame.K_x]:
-                fred.close_dialog(self.player1, screen)
-                
-                return "go to memoria"
             
-            player1.move(keys, colidables)
+            
+            self.player1.move(keys, colidables)
 
 
             pygame.draw.rect(screen, (255, 255, 255), blocker0)
@@ -78,7 +86,7 @@ class UATA:
             self.player1.draw(self.screen)
             Player.draw_score(self.player1, self.screen)
 
-            fred.interact(player1, screen)
+            fred.interact(self.player1, screen)
 
             pygame.display.flip()
 

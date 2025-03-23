@@ -69,12 +69,12 @@ class Multiusos:
             screen.fill("white")
 
             keys = pygame.key.get_pressed()
-            if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
+            if keys[pygame.K_e]:
                 if door1.can_interact(self.player1, screen):
-                    print('rabo')
                     return "go to entrada"
                 
                 if door2.can_interact(self.player1, screen):
+                    print("UATA")
                     return "go to uata"
                 
                 if door3.can_interact(self.player1, screen):
@@ -99,6 +99,7 @@ class Multiusos:
             table2.draw(screen)
             table3.draw(screen)
             table4.draw(screen)
+            
             self.player1.draw(self.screen)
             Player.draw_score(self.player1, self.screen)
 
