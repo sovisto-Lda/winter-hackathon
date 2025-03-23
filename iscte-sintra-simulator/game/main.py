@@ -92,4 +92,7 @@ while True:
         cutscene = Cutscene(screen, 4)
         nextCena = cutscene.load()
         
+    elif nextCena == "end game":
+        nextCena = 
+        
     else: break
