@@ -28,7 +28,7 @@ uata = UATA(screen, player1)
 minigame2 = Minigame2(screen, player1)
 lab = LAB(screen, player1)
 minigame1 = Minigame1(screen, player1)
-day_manager = DayManager(1)
+day_manager = DayManager(3)
 
 mainMenu.load()
 nextCena = day_manager.show_begin_day()
