@@ -56,7 +56,22 @@ class Cutscene:
         filme1_14 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_14.png", False)
 
         filme1_15 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_15.png", False)
-
+        
+        # Filme 2
+        filme2_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_1.png", False)
+        
+        filme2_2 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_2.png", False)
+        
+        filme2_3 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_3.png", False)
+        
+        filme2_4 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_4.png", False)
+        
+        filme2_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_5.png", False)
+        
+        filme2_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_6.png", True)
+        
+        filme2_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme2/filme2_7.png", True)
+        
         if self.sceneNumber == 1:
             self.images = [
                 filme1_1,
@@ -77,8 +92,15 @@ class Cutscene:
             ]
         elif self.sceneNumber == 2:
             self.images = [
-                
+                filme2_1,
+                filme2_2,
+                filme2_3,
+                filme2_4,
+                filme2_5,
+                filme2_6,
+                filme2_7
             ]
+            
         return self.images
     
     def load(self):
@@ -96,6 +118,8 @@ class Cutscene:
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     if self.sceneNumber == 1:
                         return "go to entrada"    
+                    elif self.sceneNumber == 2:
+                        return "fim do dia"
             
             if self.current_frame < len(self.images):
                 frame = self.images[self.current_frame]
@@ -111,3 +135,6 @@ class Cutscene:
             
                 if self.sceneNumber == 1:
                     return "go to entrada - day begin"
+                
+                elif self.sceneNumber == 2:
+                        return "fim do dia"

@@ -46,16 +46,20 @@ class DayManager:
 
             
         pygame.display.flip()
-        mouse_pos = pygame.mouse.get_pos()
     
-        if nextday_rect.collidepoint(mouse_pos):
-            nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte_pressed.png").convert_alpha()
-            nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
-        else:
-            nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte.png").convert_alpha()
-            nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
-            clock.tick(30)
+        
+            
         while running:
+            mouse_pos = pygame.mouse.get_pos()
+
+            if nextday_rect.collidepoint(mouse_pos):
+                nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte_pressed.png").convert_alpha()
+                nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
+            else:
+                nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte.png").convert_alpha()
+                nextday_image = pygame.transform.scale(nextday_image, (int(nextday_image.get_width() * .75), int(nextday_image.get_height() * .75)))
+                clock.tick(30)
+                
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print(event.pos)
@@ -120,5 +124,9 @@ class DayManager:
                     print(event.pos)
                     if start_game_rect.collidepoint(event.pos):
                         print("Comecar")
-                        return "play cutscreen 1"  # Transition to the next scene
+                        print(self.get_current_day())
+                        if self.get_current_day() == 1:
+                            return "play cutscene 1"  # Transition to the next scene
+                        else:
+                            return "go to entrada"
         

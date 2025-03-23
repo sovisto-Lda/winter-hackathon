@@ -74,8 +74,12 @@ while True:
     elif nextCena == "inicio do dia":
         nextCena = day_manager.show_begin_day()
     
-    elif nextCena == "play cutscreen 1":
+    elif nextCena == "play cutscene 1":
         cutscene = Cutscene(screen, 1)
+        nextCena = cutscene.load()
+        
+    elif nextCena == "play cutscene 2":
+        cutscene = Cutscene(screen, 2)
         nextCena = cutscene.load()
         
     else: break

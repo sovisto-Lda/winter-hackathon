@@ -116,7 +116,7 @@ class GaudencioMinigame:
                         
                             if play2_game_rect.collidepoint(event.pos):
                                 running2 = False
-                                return "fim do dia"
+                                return "play cutscene 2"
 
 
                     if play2_game_rect.collidepoint(mouse_pos):
