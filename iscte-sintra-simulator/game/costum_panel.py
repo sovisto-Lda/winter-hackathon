@@ -44,8 +44,8 @@ class CostumPanel:
         bg_rect.topleft = (0, 0)
 
         # Imagem da personagem
-        player_image = pygame.image.load("iscte-sintra-simulator/assets/images/Default1/Default1_front.png").convert_alpha()
-        player_image = pygame.transform.scale(player_image, (int(player_image.get_width() * 5.5), int(player_image.get_height() * 5.5)))
+        player_image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_front 1.png").convert_alpha()
+        player_image = pygame.transform.scale(player_image, (130,130))
         player_rect = player_image.get_rect()
         player_rect.topleft = (250, 300)
 
@@ -190,7 +190,16 @@ class CostumPanel:
                         self.curso = curso_images[self.curso_index][0]
                         self.curso_name = os.path.splitext(curso_images[self.curso_index][1])[0]  # Remove the extension
                         self.personagem = personagem_options[self.personagem_index]
+                        # Atributos a serem passados para a proxima tela
+                        self.player1.set_nome(self.input_text)
+                        print(self.player1.get_nome())
+                        self.player1.set_curso(self.curso_name)
+                        print(self.player1.get_curso())
+                        self.player1.set_personagem(self.personagem)
+                        print(self.player1.get_personagem())
                         running = False
+                        return
+                    
                 if event.type == pygame.KEYDOWN and self.text_box_active:
                     if event.key == pygame.K_RETURN:  # Ou qualquer outra tecla que desejas
                         running = False
@@ -209,14 +218,6 @@ class CostumPanel:
         
         print("COSTUM PANEL CLOSE")
 
-        # Atributos a serem passados para a proxima tela
-        print(self.input_text)
-        print(self.personagem)
-        print(self.curso_name)
+       
+        
         pygame.quit()
-
-
-screen = pygame.display.set_mode((1280, 720))
-player1 = Player(850, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
-costum_panel = CostumPanel(screen, player1)
-costum_panel.load()

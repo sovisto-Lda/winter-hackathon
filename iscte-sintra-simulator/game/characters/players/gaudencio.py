@@ -15,7 +15,7 @@ PROJECTILE_SPEED = 7
 class Gaudencio(Player):
 
     def __init__(self, x, y, image_path, color):
-        super().__init__(x, y, image_path, color, 1)
+        super().__init__(x, y, image_path, color)
 
         self.isTurned = False
 
