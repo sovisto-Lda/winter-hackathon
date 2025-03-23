@@ -48,6 +48,7 @@ class Entrada:
         if (dayBegin):
             self.player1.x = 800
             self.player1.y = 160
+            
         elif (fromMultiusos):
             self.player1.x = 865
             self.player1.y = 450

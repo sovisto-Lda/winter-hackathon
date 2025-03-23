@@ -163,11 +163,11 @@ class Cutscene:
                     
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                     if self.sceneNumber == 1:
-                        return "go to entrada"    
+                        return "go to entrada - day begin"    
                     elif self.sceneNumber == 2:
                         return "fim do dia"
                     elif self.sceneNumber == 3:
-                        return "go to entrada"
+                        return "go to entrada - day begin"
             
             if self.current_frame < len(self.images):
                 frame = self.images[self.current_frame]
