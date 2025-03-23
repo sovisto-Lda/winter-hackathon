@@ -124,3 +124,9 @@ class Player:
         score_text = font.render(f"{player1.get_score()}", True, (0, 0, 0))
         screen.blit(score_text, (20, 20))
         screen.blit(coin_image, (score_text.get_width() + 30, 20))
+        
+    def draw_score_end_day(player1,screen):
+        font = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
+
+        score_text = font.render(f"{player1.get_score()}", True, (0, 0, 0))
+        screen.blit(score_text, (600, 350))

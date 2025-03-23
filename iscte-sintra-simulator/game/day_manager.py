@@ -1,8 +1,11 @@
 import pygame
+from characters.players.player import Player
 
 class DayManager:
-    def __init__(self, start_day=1):
+    def __init__(self, screen, player1, start_day=1):
         self.current_day = start_day
+        self.screen = screen
+        self.player1 = player1
         self.max_days = 3  # For example, the game lasts 7 days
         
     def next_day(self):
@@ -23,15 +26,17 @@ class DayManager:
         pygame.init()
         
         clock = pygame.time.Clock()
-        screen = pygame.display.set_mode((1280, 720))
+        self.screen = pygame.display.set_mode((1280, 720))
         running = True
 
-        screen.fill((0,0,0))
+        self.screen.fill((0,0,0))
 
         #fundos de final de dia
         fim_dia1 = pygame.image.load("iscte-sintra-simulator/assets/images/dias/fim do dia 1.png").convert_alpha()
         fim_dia1 = pygame.transform.scale(fim_dia1, (1280, 720))
         
+        fim_dia2 = pygame.image.load("iscte-sintra-simulator/assets/images/dias/fim do dia 2.png").convert_alpha()
+        fim_dia2 = pygame.transform.scale(fim_dia2, (1280, 720))
         
         #nextday button
         nextday_image = pygame.image.load("iscte-sintra-simulator/assets/images/botoes/dia seguinte.png").convert_alpha()
@@ -41,8 +46,14 @@ class DayManager:
         nextday_rect.centery = 512
         
         if self.get_current_day() == 1:
-            screen.blit(fim_dia1,(0,0))
-            screen.blit(nextday_image, nextday_rect)
+            self.screen.blit(fim_dia1,(0,0))
+            self.screen.blit(nextday_image, nextday_rect)
+            Player.draw_score_end_day(self.player1, self.screen)
+            
+        elif self.get_current_day() == 2:
+            self.screen.blit(fim_dia2)
+            self.screen.blit(nextday_image, nextday_rect)
+
 
             
         pygame.display.flip()
@@ -73,10 +84,10 @@ class DayManager:
         pygame.init()
         
         clock = pygame.time.Clock()
-        screen = pygame.display.set_mode((1280, 720))
+        self.screen = pygame.display.set_mode((1280, 720))
         running = True
 
-        screen.fill((0,0,0))
+        self.screen.fill((0,0,0))
 
         #imagens dos dias
         inicio_dia1 = pygame.image.load("iscte-sintra-simulator/assets/images/dias/inicio dia 1.png").convert_alpha()
@@ -98,13 +109,13 @@ class DayManager:
                 
         while running:
             # Clear the skin
-            screen.fill((0,0,0))
+            self.screen.fill((0,0,0))
             if self.get_current_day() == 1:
-                screen.blit(inicio_dia1,(0,0))
-                screen.blit(start_game_image, start_game_rect)
+                self.screen.blit(inicio_dia1,(0,0))
+                self.screen.blit(start_game_image, start_game_rect)
             elif self.get_current_day() == 2:
-                screen.blit(inicio_dia2,(0,0))
-                screen.blit(start_game_image, start_game_rect)
+                self.screen.blit(inicio_dia2,(0,0))
+                self.screen.blit(start_game_image, start_game_rect)
                 
     
                 
