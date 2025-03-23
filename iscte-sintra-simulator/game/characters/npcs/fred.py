@@ -1,10 +1,6 @@
 import pygame
 from .npc import NPC
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
@@ -15,14 +11,6 @@ ATTACK_DAMAGE = 10
 PROJECTILE_SPEED = 7
 
 class Fred(NPC):
-<<<<<<< Updated upstream
-
-    def interact(self, players, screen):
-        if not (self.checkProximity(players, screen)): return False
-
-        if self.openDialog:
-            dialog = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/fred dialog.png").convert_alpha()
-=======
     def interact(self, players, screen):
         if not (self.checkProximity(players, screen)): return
 
@@ -50,7 +38,6 @@ class Fred(NPC):
 
         if self.openDialog:
             dialog = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/dialog fred.png").convert_alpha()
->>>>>>> Stashed changes
             dialog = pygame.transform.scale(dialog, (int(dialog.get_width() * .85), int(dialog.get_height() * .85)))
             dialog_rect = dialog.get_rect()  # Set position
             dialog_rect.centerx = 620
@@ -58,11 +45,6 @@ class Fred(NPC):
             screen.blit(dialog, dialog_rect)
 
         print(self.isInteracting)
-<<<<<<< Updated upstream
-        if (self.isInteracting == False): return False
-    
-        return True
-=======
         if (self.isInteracting == False): return
     
         return
@@ -72,4 +54,3 @@ class Fred(NPC):
 
     def close_dialog(self, players, screen):
         if self.checkProximity(players, screen): self.openDialog = False
->>>>>>> Stashed changes

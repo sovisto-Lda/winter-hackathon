@@ -1,143 +1,107 @@
+import os
 import pygame
 from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
 from characters.npcs.npc import NPC
-from characters.npcs.fred import Fred
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
-from characters.npcs.fred import Fred
+from entrada import Entrada
 
 
-def Multiusos(screen):
-    pygame.init()
+class Multiusos:
+    def __init__(self, screen):
+        self.screen = screen
 
-    screen = pygame.display.set_mode((1280, 720))
-    clock = pygame.time.Clock()
-    running = True
-    dt = 0
+    def load(self, fromLab):
 
-    screen.fill((0,0,0))
+        pygame.init()
 
-    image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos s col.png").convert_alpha()  # Load image safely
-    image = pygame.transform.scale(image, (1280, 720))
+        screen = pygame.display.set_mode((1280, 720))
+        clock = pygame.time.Clock()
+        running = True
+        dt = 0
 
-    rect = image.get_rect()  # Set position
-    rect.topleft = (0, 0)  # Position at the top-left corner
+        screen.fill((0,0,0))
 
-    table1 = TableMultiusos(900, 500, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png")
+        image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos s col_UATA escura.png").convert_alpha()  # Load image safely
+        image = pygame.transform.scale(image, (1280, 720))
 
-    player1 = Player(100, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0))
+        rect = image.get_rect()  # Set position
+        rect.topleft = (0, 0)  # Position at the top-left corner
 
-    npc1 = NPC(150, 450, "iscte-sintra-simulator/assets/images/fred/Fred_front.png", (0,0,0))
+        table1 = TableMultiusos(1070, 455, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
+        table2 = TableMultiusos(1070, 190, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
+        table3 = TableMultiusos(755, 455, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
+        table4 = TableMultiusos(755, 190, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Mesa_Multiusos_cpessoa_corte.png", 4.5)
 
-<<<<<<< Updated upstream
-    door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
-
-    fred = Fred(0,0,"iscte-sintra-simulator/assets/images/FredOnThePhone_right",(0,0,0))
-
-    colidables = [table1, door1]
-
-
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print(event.pos)
-               
-            if event.type == pygame.QUIT:
-                running = False              
-=======
+        if (fromLab):
+            player1 = Player(170, 500, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
+        else:
+            player1 = Player(1000, 150, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0), 1)
 
         door1 = Gateway(875, -8,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 3.8, screen)
         door2 = Gateway(548, 257, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
-
-        player1 = Player(1000, 250, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_back.png", (0,0,0))
-        
-        colidables = [table1, door1]
-        
-        popup_image = pygame.image.load("iscte-sintra-simulator/assets/images/dialogs/gaudencio1.png").convert_alpha()
-        popup_image = pygame.transform.scale(popup_image, (int(popup_image.get_width() * .85), int(popup_image.get_height() * .85)))
-        popup_rect = popup_image.get_rect()  # Set position
-        popup_rect.centerx = 620
-        popup_rect.centery = 500
-
-        # Popup timer
-        popup_duration = 8000  # 3 seconds
-        popup_start_time = None  # Track when the popup starts
+        door3 = Gateway(59, 587, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
+        blocker0 = pygame.Rect(0, 0, 546, 300)
 
 
-        popup_start_time = pygame.time.get_ticks()  # Record start time
->>>>>>> Stashed changes
+        blocker1 = pygame.Rect(0, 0, 1280, (2/8)*720 - 20)
+        blocker2 = pygame.Rect((5/12)*1280, 0, 10, (2/8)*720)
+        blocker3 = pygame.Rect((5/12)*1280, 265, 10, (2/8)*720)
+        blocker4 = pygame.Rect(0, (3/8)*720 + 65, (5/12)*1280, (2/8)*720)
 
-        screen.fill("white")
-
-        keys = pygame.key.get_pressed()
-
-<<<<<<< Updated upstream
-        if keys[pygame.K_e]:
-            npc1.open_dialog([player1], screen)
-            
-            if door1.can_interact([player1], screen):
-                Entrada(screen)
-                return
-            
-            
+        colidables = [table1, table2, table3, table4, door1, door2, door3, blocker0, blocker1, blocker2, blocker3, blocker4]
 
 
-=======
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    print(event.pos)
+                
+                if event.type == pygame.QUIT:
+                    running = False              
+
             screen.fill("white")
 
             keys = pygame.key.get_pressed()
-
-            if keys[pygame.K_e]:
-                
-                if door1.can_interact([player1], screen):
+            if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
+                if door1.can_interact(player1, screen):
+                    print('rabo')
                     return "go to entrada"
                 
-                if door2.can_interact([player1], screen):
+                if door2.can_interact(player1, screen):
                     return "go to uata"
-            
+                
+                if door3.can_interact(player1, screen):
+                    return "go to minigame1"
+
+                    
+
+        
             player1.move(keys, colidables)
+
+            pygame.draw.rect(screen, (255, 255, 255), blocker0)
+            pygame.draw.rect(screen, (255, 255, 255), blocker1)
+            pygame.draw.rect(screen, (255, 255, 255), blocker2)
+            pygame.draw.rect(screen, (255, 255, 255), blocker3)
+            pygame.draw.rect(screen, (255, 255, 255), blocker4)
 
             screen.blit(image, rect)  # Draw player image
 
             door1.draw(screen)
+            door2.draw(screen)
             table1.draw(screen)
+            table2.draw(screen)
+            table3.draw(screen)
+            table4.draw(screen)
             player1.draw(screen)
 
 
-            # edoor1.interact([player1], screen)
->>>>>>> Stashed changes
+            pygame.display.flip()
 
-        if keys[pygame.K_x]:
-            npc1.close_dialog([player1], screen)
-        
-        
-        
-        player1.move(keys, colidables)
-
-        screen.blit(image, rect)  # Draw player image
-
-        door1.draw(screen)
-        table1.draw(screen)
-        npc1.draw(screen)
-        player1.draw(screen)
-
-
-        npc1.interact([player1], screen)
-        # edoor1.interact([player1], screen)
-
-        pygame.display.flip()
-
-        dt = clock.tick(60) / 1000
+            dt = clock.tick(60) / 1000
 
 
 
 
-<<<<<<< Updated upstream
-    pygame.quit()
-screen = pygame.display.set_mode((1280, 720))
-
-Multiusos(screen)
-=======
         pygame.quit()
->>>>>>> Stashed changes

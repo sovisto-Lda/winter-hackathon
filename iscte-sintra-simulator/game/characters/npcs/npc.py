@@ -1,4 +1,5 @@
 import pygame
+#from ...global_variables import GameVariables as GB
 
 
 WHITE = (255, 255, 255)
@@ -48,25 +49,25 @@ class NPC:
         return False  # No collision
     
 
-    def checkProximity(self, players, screen):
-        for player in players:
-            dx = player.rect.centerx - self.rect.centerx
-            dy = player.rect.centery - self.rect.centery
 
-            if (dx*dx + dy*dy < 10000): 
-                print("is close!")
-                self.isInteracting = True
-                exclamation = pygame.image.load("iscte-sintra-simulator/assets/images/exclamation.png").convert_alpha()
-                exclamation = pygame.transform.scale(exclamation, (int(exclamation.get_width() * .25), int(exclamation.get_height() * .25)))
-                exclamation_rect = exclamation.get_rect()  # Set position
-                exclamation_rect.centerx = self.rect.topright[0] + 5
-                exclamation_rect.centery = self.rect.topright[1] + 0
-                screen.blit(exclamation, exclamation_rect)
+    def checkProximity(self, player, screen):
+        dx = player.rect.centerx - self.rect.centerx
+        dy = player.rect.centery - self.rect.centery
 
-                return True
-            else: 
-                self.isInteracting = False
-                return False
+        if (dx*dx + dy*dy < 10000): 
+            print("is close!")
+            self.isInteracting = True
+            exclamation = pygame.image.load("iscte-sintra-simulator/assets/images/exclamation.png").convert_alpha()
+            exclamation = pygame.transform.scale(exclamation, (int(exclamation.get_width() * .25), int(exclamation.get_height() * .25)))
+            exclamation_rect = exclamation.get_rect()  # Set position
+            exclamation_rect.centerx = self.rect.topright[0] + 5
+            exclamation_rect.centery = self.rect.topright[1] + 0
+            screen.blit(exclamation, exclamation_rect)
+
+            return True
+        else: 
+            self.isInteracting = False
+        return False
 
     def interact(self, players, screen):
         if not (self.checkProximity(players, screen)): return
