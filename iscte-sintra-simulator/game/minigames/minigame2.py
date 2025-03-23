@@ -52,12 +52,6 @@ class Minigame2:
         image2 = pygame.transform.scale(image2, (WIDTH, HEIGHT))
         image3 = pygame.transform.scale(image3, (WIDTH, HEIGHT))
         
-        # #background
-        # bg_image = pygame.image.load("iscte-sintra-simulator/assets/images/SALA MULTIUSOS/ISS_Sala_Multiusos col_MULTIUSOS escura.png").convert_alpha()
-        # bg_image = pygame.transform.scale(bg_image, (int(bg_image.get_width() * 3), int(bg_image.get_height() * 3)))
-        # bg_rect = bg_image.get_rect()  # Set position
-        # bg_rect.topleft = (200,70)
-        
         #play button
         play_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
         play_game_image = pygame.transform.scale(play_game_image, (int(play_game_image.get_width() * .75), int(play_game_image.get_height() * .75)))

@@ -1,12 +1,9 @@
 import os
 import pygame
 from characters.players.player import Player
-from characters.players.gaudencio import Gaudencio
-from characters.npcs.npc import NPC
 from characters.npcs.seguranca import Seguranca
-from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
-from minigames.gaudencio_minigame import GaudencioMinigame
+
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
 
@@ -17,7 +14,7 @@ class Entrada:
         self.screen = screen
         self.player1 = player1
 
-    def load(self):
+    def load(self, day, dayBegin):
         pygame.init()
 
         screen = pygame.display.set_mode((1280, 720))
@@ -43,7 +40,14 @@ class Entrada:
         door1 = Gateway(1222, 500,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
 
         door2 = Gateway(859,595, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png",0,screen)
-
+        
+        if (dayBegin):
+            self.player1.x = 800
+            self.player1.y = 160
+        else:
+            self.player1.x = 900
+            self.player1.y = 600
+             
 
         colidables = [blocker1, blocker2, blocker3]
 
@@ -59,14 +63,18 @@ class Entrada:
 
             keys = pygame.key.get_pressed()
 
-            if keys[pygame.K_e] or keys[pygame.K_RSHIFT]:
+            if keys[pygame.K_e]:
                 npc1.open_dialog(self.player1, screen)
 
                 if door1.can_interact(self.player1, screen):
-                    return "go to gaudencio"
+                    if day == 1:
+                        return "go to gaudencio"
+                    else:
+                        print("This activity is not allowed in this day!")
                 
                 if door2.can_interact(self.player1, screen):
                     return "go to multiusos"
+                
                     
                 
 

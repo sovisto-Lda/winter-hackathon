@@ -13,7 +13,7 @@ class Multiusos:
         self.screen = screen
         self.player1 = player1
 
-    def load(self, fromLab, fromUata):
+    def load(self, fromLab, fromUata, day):
 
         pygame.init()
 
