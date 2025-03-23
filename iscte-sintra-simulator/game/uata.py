@@ -10,6 +10,7 @@ class UATA:
     def __init__(self, screen, player1):
         self.screen = screen
         self.player1 = player1
+        self.playedMemoryGame = False
 
     def load(self, fromMg2):
 
@@ -42,8 +43,10 @@ class UATA:
 
         blocker0 = pygame.Rect(546, 0, 546, 600)
         blocker1 = pygame.Rect(0, 0, 1280, (2/8)*720 - 20)
+        blocker2 = pygame.Rect(0,364,543, 370)
+        blocker3 = pygame.Rect(0, 0, 115, 364)
 
-        colidables = [door1, blocker0, blocker1]
+        colidables = [door1, blocker0, blocker1, blocker2, blocker3]
 
         while running:
             keys = pygame.key.get_pressed()
@@ -65,13 +68,17 @@ class UATA:
                     
                     # Interaction with Door
                     elif event.key == pygame.K_e and door1.can_interact(self.player1, screen):
-                        print("Going back to Multiusos")
-                        return "go to multiusos - uata"
+                        if self.playedMemoryGame:
+                            print("Going back to Multiusos")
+                            return "go to multiusos - uata"
+                        else:
+                            print("Ainda nao jogaste o jogo da memoria")
     
                     # Close Dialog with Fred and start waiting mini game
                     elif event.key == pygame.K_x:
                         print("Closing Fred's Dialog")
                         fred.close_dialog(self.player1, screen)
+                        self.playedMemoryGame = True
                         return "go to memoria"
                                 
 

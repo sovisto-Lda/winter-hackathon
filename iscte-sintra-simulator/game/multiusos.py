@@ -9,6 +9,9 @@ class Multiusos:
     def __init__(self, screen, player1):
         self.screen = screen
         self.player1 = player1
+        self.inUATACount = 0  # Move this to the class level so it persists across scenes
+        self.inLabCount = 1
+
 
     def load(self, fromLab, fromUata, day):
 
@@ -18,6 +21,7 @@ class Multiusos:
         clock = pygame.time.Clock()
         running = True
         dt = 0
+
 
         screen.fill((0,0,0))
 
@@ -56,9 +60,11 @@ class Multiusos:
         blocker4 = pygame.Rect(0, (3/8)*720 + 65, (5/12)*1280, (2/8)*720)
 
         colidables = [table1, table2, table3, table4, door1, door2, door3, blocker0, blocker1, blocker2, blocker3, blocker4]
-
+        
+        
 
         while running:
+
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print(event.pos)
@@ -74,33 +80,51 @@ class Multiusos:
                     return "go to entrada"
                 
                 if door2.can_interact(self.player1, screen):
-                    print("UATA")
-                    return "go to uata"
-                
+                    if day == 2 and self.inUATACount == 0:
+                        print("UATA")
+                        self.inUATACount += 1  # Increment only once per successful visit
+                        return "go to uata"
+                    elif self.inUATACount > 0:
+                        print("Já não podes entrar na UATA")  # Block after first visit
+                    else:
+                        print("Hoje não podes entrar na UATA")
+                        
                 if door3.can_interact(self.player1, screen):
-                    return "go to minigame1"
+                    if day == 2 and self.inUATACount > 0 and self.inLabCount == 0:
+                        self.inLabCount += 1 
+                        return "go to minigame1"  # Only allowed if UATA was visited
+
+                    elif self.inUATACount == 0:
+                        print("Ainda não foste à UATA falar com o Fred")
+                        
+                    elif self.inLabCount > 0:
+                        return "go to lab"
+                        
+                    else:
+                        print("Hoje não podes entrar aqui")
 
                     
 
         
             self.player1.move(keys, colidables)
 
-            pygame.draw.rect(screen, (255, 255, 255), blocker0)
-            pygame.draw.rect(screen, (255, 255, 255), blocker1)
-            pygame.draw.rect(screen, (255, 255, 255), blocker2)
-            pygame.draw.rect(screen, (255, 255, 255), blocker3)
-            pygame.draw.rect(screen, (255, 255, 255), blocker4)
+            # pygame.draw.rect(self.screen, (255, 0, 0), blocker0)
+            # pygame.draw.rect(self.screen, (255, 0, 0), blocker1)
+            # pygame.draw.rect(self.screen, (255, 0, 0), blocker2)
+            # pygame.draw.rect(self.screen, (255, 0, 0), blocker3)
+            # pygame.draw.rect(self.screen, (255, 0, 0), blocker4)
 
             screen.blit(image, rect)  # Draw player image
 
-            door1.draw(screen)
-            door2.draw(screen)
-            table1.draw(screen)
-            table2.draw(screen)
-            table3.draw(screen)
-            table4.draw(screen)
+            door1.draw(self.screen)
+            door2.draw(self.screen)
+            table1.draw(self.screen)
+            table2.draw(self.screen)
+            table3.draw(self.screen)
+            table4.draw(self.screen)
             
             self.player1.draw(self.screen)
+            
             Player.draw_score(self.player1, self.screen)
 
 

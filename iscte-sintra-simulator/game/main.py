@@ -18,7 +18,7 @@ pygame.mixer.music.play(-1)  # Play indefinitely (-1 loops)
 pygame.mixer.music.set_volume(0.03)  # Volume (0.0 to 1.0)
 
 screen = pygame.display.set_mode((1280, 720))
-player1 = Player(800, 160, "iscte-sintra-simulator/assets/images/characters/gaudencio/gaudencio_back.png", (0,0,0), 1)
+player1 = Player(800, 160, "iscte-sintra-simulator/assets/images/characters/Default1/Default1_front 1.png", (0,0,0), 1)
 
 mainMenu = MainMenu(screen, player1)
 multiusos = Multiusos(screen, player1)
@@ -48,10 +48,10 @@ while True:
         nextCena = multiusos.load(False,True, day_manager.get_current_day())
         
     elif nextCena == "go to entrada":
-        nextCena = entrada.load(day_manager.get_current_day(), False)
+        nextCena = entrada.load(day_manager.get_current_day(), False, True)
         
     elif nextCena == "go to entrada - day begin":
-        nextCena = entrada.load(day_manager.get_current_day(), True)
+        nextCena = entrada.load(day_manager.get_current_day(), True, False)
         
     elif nextCena == "go to uata":
          nextCena = uata.load(False)

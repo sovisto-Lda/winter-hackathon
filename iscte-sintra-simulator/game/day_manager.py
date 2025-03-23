@@ -130,5 +130,5 @@ class DayManager:
                         elif self.get_current_day() == 2:
                             return "play cutscene 3"
                         else:
-                            return "go to entrada"
+                            return "go to entrada - day begin"
         
