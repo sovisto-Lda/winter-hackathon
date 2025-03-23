@@ -98,6 +98,25 @@ class Cutscene:
         filme3_12 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_12.png", False)
 
         filme3_13 = Frame("iscte-sintra-simulator/assets/images/filmes/filme3/filme3_13.png", False)
+
+        #Filme 4
+        filme4_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_1.png", False)
+
+        filme4_2 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_2.png", False)
+
+        filme4_3 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_3.png", False)
+
+        filme4_4 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_4.png", True)
+
+        filme4_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_5.png", False)
+
+        filme4_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_6.png", True)
+
+        filme4_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_7.png", False)
+
+        filme4_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_8.png", True)
+
+        filme4_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_9.png", False)
         
 
         
@@ -146,7 +165,20 @@ class Cutscene:
                 filme3_12,
                 filme3_13
             ]
-            
+
+        elif self.sceneNumber == 4:
+            self.images = [
+                filme4_1,
+                filme4_2,
+                filme4_3,
+                filme4_4,
+                filme4_5,
+                filme4_6,
+                filme4_7,
+                filme4_8,
+                filme4_9
+            ]
+
         return self.images
     
     def load(self):
@@ -168,6 +200,8 @@ class Cutscene:
                         return "fim do dia"
                     elif self.sceneNumber == 3:
                         return "go to entrada"
+                    elif self.sceneNumber == 4:
+                        return "go to uata"
             
             if self.current_frame < len(self.images):
                 frame = self.images[self.current_frame]
@@ -189,3 +223,6 @@ class Cutscene:
                 
                 elif self.sceneNumber == 3:
                     return "go to entrada - day begin"
+                
+                elif self.sceneNumber == 4:
+                    return "go to uata"
