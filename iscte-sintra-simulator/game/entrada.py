@@ -14,7 +14,7 @@ class Entrada:
         self.screen = screen
         self.player1 = player1
 
-    def load(self, day, dayBegin):
+    def load(self, day, dayBegin, fromMultiusos):
         pygame.init()
 
         screen = pygame.display.set_mode((1280, 720))
@@ -35,21 +35,26 @@ class Entrada:
         blocker1 = pygame.Rect(0, 0, 1280, 160)
         blocker2 = pygame.Rect(0, 620, 1280, 150)
         blocker3 = pygame.Rect(106, 205, 110, 350)
+        blocker4 = pygame.Rect(1160,0, 114, 1160)
 
 
         door1 = Gateway(1222, 500,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
 
         door2 = Gateway(859,595, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png",0,screen)
         
+        self.player1.x = 800
+        self.player1.y = 160
+        
         if (dayBegin):
             self.player1.x = 800
             self.player1.y = 160
-        else:
-            self.player1.x = 900
-            self.player1.y = 600
+        elif (fromMultiusos):
+            self.player1.x = 865
+            self.player1.y = 450
              
+        self.player1.change_rect(self.player1.x, self.player1.y)
 
-        colidables = [blocker1, blocker2, blocker3]
+        colidables = [blocker1, blocker2, blocker3, blocker4]
 
         while running:
             for event in pygame.event.get():
