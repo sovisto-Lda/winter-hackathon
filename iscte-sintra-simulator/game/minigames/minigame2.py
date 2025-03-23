@@ -187,7 +187,7 @@ class Minigame2:
                 self.draw_text(result_message, 300, 270)
                 
             if game_phase =="end":
-                return "go to uata"
+                return "go to uata - minigame2"
 
             pygame.display.flip()
             clock.tick(30)

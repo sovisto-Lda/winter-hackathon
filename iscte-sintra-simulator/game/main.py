@@ -35,13 +35,17 @@ while True:
     if nextCena == "go to gaudencio":
         nextCena = gaudencioMinigame.load()
     elif nextCena ==  "go to multiusos":
-        nextCena = multiusos.load(False)
+        nextCena = multiusos.load(False,False)
     elif nextCena ==  "go to multiusos - lab":
-        nextCena = multiusos.load(True)
+        nextCena = multiusos.load(True, False)
+    elif nextCena == "go to multiusos - uata":
+        nextCena = multiusos.load(False,True)
     elif nextCena == "go to entrada":
         nextCena = entrada.load()
     elif nextCena == "go to uata":
-        nextCena = uata.load()
+        nextCena = uata.load(False)
+    elif nextCena == "go to uata - minigame2":
+        nextCena = uata.load(True)
     elif nextCena == "go to lab":
         nextCena = lab.load()
     elif nextCena == "go to memoria":

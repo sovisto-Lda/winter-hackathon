@@ -11,7 +11,7 @@ class UATA:
         self.screen = screen
         self.player1 = player1
 
-    def load(self):
+    def load(self, fromMg2):
 
         pygame.init()
 
@@ -29,9 +29,15 @@ class UATA:
         rect.topleft = (0, 0)  # Position at the top-left corner
 
         fred = Fred(100, 100, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", (0,0,0))        
-        self.player1.x = 474
-        self.player1.y = 228
+        if(fromMg2):
+            self.player1.x = 220
+            self.player1.y = 140
+        else:
+            self.player1.x = 474
+            self.player1.y = 228
+            
         self.player1.change_rect(self.player1.x, self.player1.y)
+        
         door1 = Gateway(540,249, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", 0, screen)
 
         blocker0 = pygame.Rect(546, 0, 546, 600)
@@ -60,7 +66,7 @@ class UATA:
                     # Interaction with Door
                     elif event.key == pygame.K_e and door1.can_interact(self.player1, screen):
                         print("Going back to Multiusos")
-                        return "go to multiusos"
+                        return "go to multiusos - uata"
     
                     # Close Dialog with Fred and start waiting mini game
                     elif event.key == pygame.K_x:

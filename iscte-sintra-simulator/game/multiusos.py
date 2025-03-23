@@ -13,7 +13,7 @@ class Multiusos:
         self.screen = screen
         self.player1 = player1
 
-    def load(self, fromLab):
+    def load(self, fromLab, fromUata):
 
         pygame.init()
 
@@ -38,6 +38,9 @@ class Multiusos:
         if (fromLab):
             self.player1.x = 170
             self.player1.y = 500
+        elif (fromUata):
+            self.player1.x = 600
+            self.player1.y = 200
         else:
             self.player1.x = 1000
             self.player1.y = 150
