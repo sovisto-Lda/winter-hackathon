@@ -28,7 +28,7 @@ class UATA:
         rect = image.get_rect()  # Set position
         rect.topleft = (0, 0)  # Position at the top-left corner
 
-        fred = Fred(100, 100, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", (0,0,0))        
+        fred = Fred(100, 100, "iscte-sintra-simulator/assets/images/characters/fred/FredOnThePhone_right.png", (0,0,0))        
         if(fromMg2):
             self.player1.x = 220
             self.player1.y = 140
@@ -38,7 +38,7 @@ class UATA:
             
         self.player1.change_rect(self.player1.x, self.player1.y)
         
-        door1 = Gateway(540,249, "iscte-sintra-simulator/assets/images/fred/FredOnThePhone_right.png", 0, screen)
+        door1 = Gateway(540,249, "iscte-sintra-simulator/assets/images/characters/fred/FredOnThePhone_right.png", 0, screen)
 
         blocker0 = pygame.Rect(546, 0, 546, 600)
         blocker1 = pygame.Rect(0, 0, 1280, (2/8)*720 - 20)

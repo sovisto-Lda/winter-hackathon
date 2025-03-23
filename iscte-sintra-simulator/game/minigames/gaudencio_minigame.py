@@ -28,7 +28,7 @@ class GaudencioMinigame:
         bg_rect = bg_image.get_rect()  # Set position
         bg_rect.topleft = (200,70)
 
-        gaudencio = Gaudencio(380, 160, "iscte-sintra-simulator/assets/images/gaudencio/gaudencio_front.png", (0,0,0))
+        gaudencio = Gaudencio(380, 160, "iscte-sintra-simulator/assets/images/characters/gaudencio/gaudencio_front.png", (0,0,0))
 
         myfont = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 30)
         titleText = myfont.render('Copia BEM!', False, (220, 220, 220))
@@ -70,7 +70,7 @@ class GaudencioMinigame:
             if keys[pygame.K_SPACE]:
                 if not player1_points >= maxpoints:
                     if gaudencio.orientation == "U":
-                        player1_points += 15
+                        player1_points += 100
                         player1_progress_bar.update(player1_points)
                     else:
                         player1_points -= 25
@@ -98,7 +98,7 @@ class GaudencioMinigame:
                 dialog_rect = bg_image.get_rect()  # Set position
                 dialog_rect.center = (570, 620/2 + 42)
 
-                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair.png").convert_alpha()
                 play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
                 play2_game_rect = play2_game_image.get_rect()  # Set position
                 play2_game_rect.centerx = 640
@@ -116,13 +116,14 @@ class GaudencioMinigame:
                         
                             if play2_game_rect.collidepoint(event.pos):
                                 running2 = False
+                                return "fim do dia"
 
 
                     if play2_game_rect.collidepoint(mouse_pos):
-                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar_pressed.png").convert_alpha()
+                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair_pressed.png").convert_alpha()
                         play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
                     else:
-                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/jogar.png").convert_alpha()
+                        play2_game_image = pygame.image.load("iscte-sintra-simulator/assets/images/menu/sair.png").convert_alpha()
                         play2_game_image = pygame.transform.scale(play2_game_image, (int(play2_game_image.get_width() * .75), int(play2_game_image.get_height() * .75)))
 
                     keys = pygame.key.get_pressed()
@@ -135,7 +136,6 @@ class GaudencioMinigame:
                     pygame.display.flip()
 
 
-                return "go to entrada"
 
 
             screen.blit(titleText, (525,25))

@@ -56,8 +56,6 @@ class MainMenu:
 
         while running:
             mouse_pos = pygame.mouse.get_pos()
-            # print(mouse_pos)
-
 
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
