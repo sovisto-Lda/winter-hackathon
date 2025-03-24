@@ -2,6 +2,7 @@ import os
 import pygame
 from multiusos import Multiusos
 from entrada import Entrada
+from costum_panel import CostumPanel
 
 
 os.environ["PYTHONPATH"] = os.path.dirname(os.path.abspath(__file__))
@@ -62,11 +63,12 @@ class MainMenu:
                     print(event.pos)
                     if play_game_rect.collidepoint(event.pos):
                         print("jogar")
+                        CostumPanel(self.screen, self.player1).load()
 
-                        self.introDialog(screen)
 
-                        Entrada(screen, self.player1)
+                        # Entrada(screen, self.player1)
                         return
+                        
                     if exit_game_rect.collidepoint(event.pos):
                         print("sair")
                         exit()
@@ -146,8 +148,9 @@ class MainMenu:
                         print(event.pos)
                     
                         if play2_game_rect.collidepoint(event.pos):
+                            running2= False
 
-                            return
+                            return "inicio do dia"
 
                     if event.type == pygame.QUIT:
                         running2 = False   
