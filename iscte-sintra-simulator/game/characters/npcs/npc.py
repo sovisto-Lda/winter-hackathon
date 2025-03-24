@@ -25,6 +25,7 @@ class NPC:
         self.projectiles = []  # Initialize projectiles
         self.health = 100  # Initialize health
         self.orientation = "R"
+        self.isInteracting = False
 
         self.openDialog = False
 
@@ -69,8 +70,8 @@ class NPC:
             self.isInteracting = False
         return False
 
-    def interact(self, players, screen):
-        if not (self.checkProximity(players, screen)): return
+    def interact(self, player, screen):
+        if not (self.checkProximity(player, screen)): return
 
         if self.openDialog:
             dialog = pygame.image.load("iscte-sintra-simulator/assets/images/dialog_box.png").convert_alpha()
@@ -85,8 +86,8 @@ class NPC:
     
         return 
     
-    def open_dialog(self, players, screen):
-        if self.checkProximity(players, screen): self.openDialog = True
+    def open_dialog(self, player, screen):
+        if self.checkProximity(player, screen): self.openDialog = True
 
-    def close_dialog(self, players, screen):
-        if self.checkProximity(players, screen): self.openDialog = False
+    def close_dialog(self, player, screen):
+        if self.checkProximity(player, screen): self.openDialog = False
