@@ -81,7 +81,7 @@ class LAB:
                         print("Closing Prof's Dialog")
                         prof.close_dialog(self.player1, screen)
                         self.playedCodeGame = True
-                        return "go to minigame1"
+                        return "play cutscene 7"
                            
 
             screen.fill("white")
