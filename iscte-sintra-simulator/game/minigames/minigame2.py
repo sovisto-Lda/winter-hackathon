@@ -10,14 +10,8 @@ WIDTH, HEIGHT = 1280, 720
 WHITE, BLACK, GREEN, RED = (255, 255, 255), (0, 0, 0), (119, 221, 119), (255, 105, 97)
 FONT = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 16)
 
-# Create game window
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Testem as vossas memórias!")
-
 def generate_sequence(length=5):
-    return "".join(random.choices("ABCDEFG12345", k=length))
-
-
+    return "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", k=length))
 
 
 class Minigame2:
@@ -26,7 +20,7 @@ class Minigame2:
         self.player1 = player1
         
     def draw_text(self, text, x, y, color=BLACK):
-        screen.blit(FONT.render(text, True, color), (x, y))
+        self.screen.blit(FONT.render(text, True, color), (x, y))
     
     def load(self):
         sequence = "" 
@@ -78,21 +72,21 @@ class Minigame2:
         
         while running:
             # Clear the skin
-            screen.fill(WHITE)
+            self.screen.fill(WHITE)
             if game_phase == "rules":
-                screen.blit(image0,(0,0))
-                screen.blit(play_game_image, play_game_rect)
+                self.screen.blit(image0,(0,0))
+                self.screen.blit(play_game_image, play_game_rect)
                 pygame.display.flip()
         
             elif game_phase == "repeat":
-                screen.blit(image2, (0,0))
-                screen.blit(avancar_game_image, avancar_game_rect)
+                self.screen.blit(image2, (0,0))
+                self.screen.blit(avancar_game_image, avancar_game_rect)
                 pygame.display.flip()
                 
                 
             elif game_phase == "results":
-                screen.blit(image3, (0,0))
-                screen.blit(exit_game_image, exit_game_rect)
+                self.screen.blit(image3, (0,0))
+                self.screen.blit(exit_game_image, exit_game_rect)
                 pygame.display.flip()
 
 
@@ -135,7 +129,7 @@ class Minigame2:
                             game_phase = "show_sequence"
                     
                 if game_phase == "show_sequence":
-                    screen.blit(image1, (0, 0))  # Show the "show sequence" image
+                    self.screen.blit(image1, (0, 0))  # Show the "show sequence" image
                     self.draw_text(sequence, 500, 250)
                     pygame.display.flip()
                     

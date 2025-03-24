@@ -1,0 +1,10 @@
+Alice;Computer Science;150
+Bob;Engineering;200
+Charlie;Design;180
+Diana;Mathematics;170
+Ethan;Physics;220
+Fiona;Biology;160
+George;Chemistry;210
+Hannah;Economics;190
+Ian;History;175
+Julia;Philosophy;165

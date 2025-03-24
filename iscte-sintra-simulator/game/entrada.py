@@ -17,12 +17,11 @@ class Entrada:
     def load(self, day, dayBegin, fromMultiusos):
         pygame.init()
 
-        screen = pygame.display.set_mode((1280, 720))
         clock = pygame.time.Clock()
         running = True
         dt = 0
 
-        screen.fill((0,0,0))
+        self.screen.fill((0,0,0))
 
         image = pygame.image.load("iscte-sintra-simulator/assets/images/ISS_Entrada.png").convert_alpha()  # Load image safely
         image = pygame.transform.scale(image, (1280, 720))
@@ -38,9 +37,9 @@ class Entrada:
         blocker4 = pygame.Rect(1160,0, 114, 1160)
 
 
-        door1 = Gateway(1222, 500,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, screen)
+        door1 = Gateway(1222, 500,"iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png", 0, self.screen)
 
-        door2 = Gateway(859,595, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png",0,screen)
+        door2 = Gateway(859,595, "iscte-sintra-simulator/assets/images/SALA MULTIUSOS/objetos/ISS_Porta Multiusos.png",0,self.screen)
         
         self.player1.x = 800
         self.player1.y = 160
@@ -65,40 +64,40 @@ class Entrada:
                 if event.type == pygame.QUIT:
                     running = False              
 
-            screen.fill("white")
+            self.screen.fill("white")
 
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_e]:
-                npc1.open_dialog(self.player1, screen)
+                npc1.open_dialog(self.player1, self.screen)
 
-                if door1.can_interact(self.player1, screen):
+                if door1.can_interact(self.player1, self.screen):
                     if day == 1:
                         return "go to gaudencio"
                     else:
                         print("This activity is not allowed in this day!")
                 
-                if door2.can_interact(self.player1, screen):
+                if door2.can_interact(self.player1, self.screen):
                     return "go to multiusos"
                 
                     
                 
 
             if keys[pygame.K_x]:
-                npc1.close_dialog(self.player1, screen)
+                npc1.close_dialog(self.player1, self.screen)
             
             self.player1.move(keys, colidables)
 
             Player.draw_score(self.player1, self.screen)
 
-            pygame.draw.rect(screen, (255, 255, 255), blocker1)
-            pygame.draw.rect(screen, (255, 255, 255), blocker2)
-            pygame.draw.rect(screen, (255, 255, 255), blocker3)
+            pygame.draw.rect(self.screen, (255, 255, 255), blocker1)
+            pygame.draw.rect(self.screen, (255, 255, 255), blocker2)
+            pygame.draw.rect(self.screen, (255, 255, 255), blocker3)
 
-            screen.blit(image, rect)  # Draw player image
+            self.screen.blit(image, rect)  # Draw player image
 
 
-            npc1.draw(screen)
+            npc1.draw(self.screen)
             self.player1.draw(self.screen)
             Player.draw_score(self.player1, self.screen)
 
