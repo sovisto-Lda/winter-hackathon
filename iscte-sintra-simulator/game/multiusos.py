@@ -92,7 +92,7 @@ class Multiusos:
                 if door3.can_interact(self.player1, screen):
                     if day == 2 and self.inUATACount > 0 and self.inLabCount == 0:
                         self.inLabCount += 1 
-                        return "go to minigame1"  # Only allowed if UATA was visited
+                        return "go to lab"  # Only allowed if UATA was visited
 
                     elif self.inUATACount == 0:
                         print("Ainda não foste à UATA falar com o Fred")

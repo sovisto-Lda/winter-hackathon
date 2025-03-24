@@ -10,7 +10,6 @@ from salaLab import LAB
 from characters.players.player import Player
 from day_manager import DayManager
 from scenes.cut_scene import Cutscene
-from costum_panel import CostumPanel
 
 # Musica
 pygame.mixer.init()
@@ -30,13 +29,12 @@ minigame2 = Minigame2(screen, player1)
 lab = LAB(screen, player1)
 minigame1 = Minigame1(screen, player1)
 day_manager = DayManager(screen, player1, 1)
-costum_panel = CostumPanel(screen, player1)
 
 mainMenu.load()
-nextCena = mainMenu.introDialog(screen)
+nextCena = day_manager.show_begin_day()
 
 
-while True:     
+while True:
     if nextCena == "go to gaudencio":
         nextCena = gaudencioMinigame.load()
         
@@ -94,6 +92,14 @@ while True:
         
     elif nextCena == "play cutscene 5":
         cutscene = Cutscene(screen, 5)
+        nextCena = cutscene.load()
+
+    elif nextCena == "play cutscene 6":
+        cutscene = Cutscene(screen, 6)
+        nextCena = cutscene.load()
+        
+    elif nextCena == "play cutscene 7":
+        cutscene = Cutscene(screen, 7)
         nextCena = cutscene.load()
         
     elif nextCena == "leaderboard":

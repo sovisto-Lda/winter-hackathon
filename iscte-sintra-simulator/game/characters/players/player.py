@@ -28,10 +28,9 @@ class Player:
         self.projectiles = []  # Initialize projectiles
         self.health = 100  # Initialize health
         self.orientation = "D"
-        self.curso = ""
-        self.personagem = ""
         self.nome = ""
-    
+        self.course = ""
+        self.personagem = ""
 
     def draw(self, screen):
         self.setImage()
@@ -42,31 +41,15 @@ class Player:
         self.rect = self.image.get_rect(topleft=(x, y))
 
     def setImage(self):
+        
         if self.orientation == "U": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_back.png").convert_alpha()
         elif self.orientation == "D": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_front.png").convert_alpha()
         elif self.orientation == "L": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_left.png").convert_alpha()
         elif self.orientation == "R": self.image = pygame.image.load("iscte-sintra-simulator/assets/images/characters/Default1/Default1_right.png").convert_alpha()
         
-    def get_nome(self):
-        return self.nome
-    
-    def set_nome(self, novo_nome):
-        self.nome = novo_nome
-        
-    def get_personagem(self):
-        return self.personagem
-    
-    def set_personagem(self, nova_persona):
-        self.personagem = nova_persona
-        
-    def get_curso(self):
-        return self.curso
-    
-    def set_curso(self,novo_curso):
-        self.curso = novo_curso
-        
-        
+
     def move(self, keys, colidables):
+      
         if keys[pygame.K_a] and self.rect.x - VEL > 0:
             if self.check_collision(pygame.Rect(self.rect.x - VEL, self.rect.y, PLAYER_SIZE[0], PLAYER_SIZE[1]), colidables): return
             self.rect.x -= VEL
@@ -108,6 +91,24 @@ class Player:
     
     def reset_score(self):
         self.score = 0
+        
+    def get_nome(self):
+        return self.nome
+    
+    def set_nome(self, novo_nome):
+        self.nome = novo_nome
+        
+    def get_course(self):
+        return self.course
+    
+    def set_course(self, novo_course):
+        self.course = novo_course
+        
+    def get_personagem(self):
+        return self.personagem
+    
+    def set_personagem(self, novo_personagem):
+        self.personagem = novo_personagem
         
 
     @staticmethod

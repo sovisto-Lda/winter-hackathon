@@ -1,5 +1,7 @@
 import pygame
 from characters.players.player import Player
+from leaderboard import LeaderBoard
+
 
 class DayManager:
     def __init__(self, screen, player1, start_day=1):
@@ -21,6 +23,10 @@ class DayManager:
         """Check if a specific activity can happen on the current day."""
         return self.current_day == activity_day
     
+    def draw_text(self, text, x, y, color=(0,0,0)):
+        FONT = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 16)
+        self.screen.blit(FONT.render(text, True, color), (x, y))
+        
     def show_end_day(self):
         
         pygame.init()
@@ -106,6 +112,9 @@ class DayManager:
                     print(event.pos)
                     if nextday_rect.collidepoint(event.pos):
                         print("Dia Seguinte")
+                        if self.get_current_day() == 3:
+                            LeaderBoard().add_to_leaderboard(self.player1.get_nome(), self.player1.get_course(), self.player1.get_score())
+
                         
                         self.next_day()
 
@@ -172,6 +181,13 @@ class DayManager:
             else:
                 self.screen.blit(leaderboard_image, (0,0))
                 self.screen.blit(exit_game_image, exit_game_rect)
+                y_offset = 300
+                
+                leaderBoard = LeaderBoard().get_leaderboard()
+                
+                for idx, entry in enumerate(leaderBoard[:10], start=1):
+                    self.draw_text(f"{idx}. {entry['Nome']} ({entry['Curso']}) — {entry['Pontuação']} pontos", 350, y_offset)
+                    y_offset += 30  # Space between entries
 
                 
             pygame.display.flip()

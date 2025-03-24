@@ -3,13 +3,15 @@ from characters.players.player import Player
 from characters.players.gaudencio import Gaudencio
 from structures.static_structures.table_multiusos import TableMultiusos
 from structures.interactive_structures.gateway import Gateway
-from characters.npcs.storasov import StoraSov
+from characters.npcs.storasov import StoraSOV
+from characters.npcs.npc import NPC
 
 
 class LAB:
     def __init__(self, screen, player1):
         self.screen = screen
         self.player1 = player1
+        self.playedCodeGame = False
 
     def load(self):
 
@@ -34,7 +36,7 @@ class LAB:
         rect = image.get_rect()  # Set position
         rect.topleft = (0, 0)  # Position at the top-left corner
 
-        prof = StoraSov(100, 100, "iscte-sintra-simulator/assets/images/characters/StoraSOV.png", (0,0,0))        
+        prof = StoraSOV(100, 100, "iscte-sintra-simulator/assets/images/characters/StoraSOV.png", (0,0,0))        
         
         door1 = Gateway(1128,480, "iscte-sintra-simulator/assets/images/characters/fred/FredOnThePhone_right.png", 0, screen)
 
@@ -44,18 +46,43 @@ class LAB:
         table1 = pygame.Rect(108, 270, 744, 188)
         table2 = pygame.Rect(108, 510, 744, 188)
         desk = pygame.Rect(992, 147, 156, 68)
-        
 
         colidables = [door1, blocker0, blocker1, blocker2, table1, table2, desk]
 
-
         while running:
+            keys = pygame.key.get_pressed()
+            screen.fill("white")
+
             for event in pygame.event.get():
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     print(event.pos)
                 
                 if event.type == pygame.QUIT:
-                    running = False              
+                    running = False   
+                    
+                if event.type == pygame.KEYDOWN:
+                    # Interaction with Prof
+                    if event.key == pygame.K_e and prof.checkProximity(self.player1, screen):
+                        print("Near Stora de SOV")
+                        print(f"Player: {self.player1.rect.topleft}, Prof: {prof.rect.topleft}")
+                        prof.open_dialog(self.player1, screen)   
+                    
+                    # Interaction with Door
+                    elif event.key == pygame.K_e and door1.can_interact(self.player1, screen):
+                        if self.playedCodeGame:
+                            print("Going back to Multiusos")
+                            return "go to multiusos"
+                        else:
+                            print("Ainda nao fizeste o exercício da aula")
+                    
+                    # Close Dialog with Prof and start waiting mini game
+                    elif event.key == pygame.K_x:
+                        print("Closing Prof's Dialog")
+                        prof.close_dialog(self.player1, screen)
+                        self.playedCodeGame = True
+                        return "play cutscene 7"
+                           
 
             screen.fill("white")
 
@@ -66,11 +93,9 @@ class LAB:
                 if door1.can_interact(self.player1, screen):
                     return "go to multiusos - lab"
 
-
-
-            # if keys[pygame.K_x]:
-
             
+                                
+
             self.player1.move(keys, colidables)
 
 
@@ -84,6 +109,8 @@ class LAB:
             self.player1.draw(self.screen)
             Player.draw_score(self.player1, self.screen)
             prof.draw(screen)
+
+            prof.interact(self.player1, self.screen)
             
             # TO check where the collidables are
             # pygame.draw.rect(self.screen, (255,0,0), blocker0)

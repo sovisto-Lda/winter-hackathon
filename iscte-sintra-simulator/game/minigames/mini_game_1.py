@@ -137,7 +137,7 @@ class Minigame1:
                         self.player1.score += max(10, int(200 - elapsed_time))
                         running = False
                         # return "go to multiusos - lab"
-                        return "fim do dia"
+                        return "play cutscene 6"
 
             pygame.display.flip()
             clock.tick(60)
