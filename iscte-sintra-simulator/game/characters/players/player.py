@@ -29,6 +29,9 @@ class Player:
         self.health = 100  # Initialize health
         self.orientation = "D"
         self.num = num
+        self.nome = ""
+        self.course = ""
+        self.personagem = ""
 
     def draw(self, screen):
         self.setImage()
@@ -115,6 +118,25 @@ class Player:
     
     def reset_score(self):
         self.score = 0
+        
+    def get_nome(self):
+        return self.nome
+    
+    def set_nome(self, novo_nome):
+        self.nome = novo_nome
+        
+    def get_course(self):
+        return self.nome
+    
+    def set_course(self, novo_course):
+        self.course = novo_course
+        
+    def get_personagem(self):
+        return self.personagem
+    
+    def set_personagem(self, novo_personagem):
+        self.personagem = novo_personagem
+        
 
     @staticmethod
     def draw_score(player1, screen):
