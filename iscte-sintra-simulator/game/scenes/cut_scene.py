@@ -1,9 +1,14 @@
 import pygame
 import time
+
+BLACK = (0, 0, 0)
+FONT = pygame.font.Font("iscte-sintra-simulator/assets/fonts/dogica.ttf", 16)
+
 class Frame:
-    def __init__(self, path, speechBubble):
+    def __init__(self, path, speechBubble, dialog=None):
         self.path = path
         self.speechBubble = speechBubble
+        self.dialog = dialog
         
     def get_image(self):
         image = pygame.image.load(self.path).convert_alpha()
@@ -20,11 +25,12 @@ class Frame:
         
         
 class Cutscene:
-    def __init__(self, screen, sceneNumber):
+    def __init__(self, screen, sceneNumber, player1):
         self.screen = screen
         self.sceneNumber = sceneNumber
         self.current_frame = 0
         self.images = []
+        self.player1 = player1
         
     def get_images(self):
         filme1_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_1.png", False)
@@ -41,7 +47,7 @@ class Cutscene:
 
         filme1_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_7.png", True)
 
-        filme1_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_8.png", True)
+        filme1_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_8.png", True, True)
 
         filme1_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme1/filme1_9.png", True)
 
@@ -266,6 +272,11 @@ class Cutscene:
                 frame = self.images[self.current_frame]
                 
                 self.screen.blit(frame.get_image(), (0,0))
+
+                if frame.dialog:
+                    print("batata")
+                    self.draw_text(self.player1.get_course(), 700, 524)
+
                 pygame.display.flip()
                 
                 pygame.time.wait(int(frame.get_time() * 1000))  # Convert seconds to milliseconds
@@ -294,3 +305,6 @@ class Cutscene:
                 
                 elif self.sceneNumber == 7:
                     return "go to minigame1"
+                
+    def draw_text(self, text, x, y, color=BLACK):
+        self.screen.blit(FONT.render(text, True, color), (x, y))

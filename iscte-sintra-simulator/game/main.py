@@ -75,31 +75,31 @@ while True:
         nextCena = day_manager.show_begin_day()
     
     elif nextCena == "play cutscene 1":
-        cutscene = Cutscene(screen, 1)
+        cutscene = Cutscene(screen, 1, player1)
         nextCena = cutscene.load()
         
     elif nextCena == "play cutscene 2":
-        cutscene = Cutscene(screen, 2)
+        cutscene = Cutscene(screen, 2, player1)
         nextCena = cutscene.load()
 
     elif nextCena == "play cutscene 3":
-        cutscene = Cutscene(screen, 3)
+        cutscene = Cutscene(screen, 3, player1)
         nextCena = cutscene.load()
 
     elif nextCena == "play cutscene 4":
-        cutscene = Cutscene(screen, 4)
+        cutscene = Cutscene(screen, 4, player1)
         nextCena = cutscene.load()
         
     elif nextCena == "play cutscene 5":
-        cutscene = Cutscene(screen, 5)
+        cutscene = Cutscene(screen, 5, player1)
         nextCena = cutscene.load()
 
     elif nextCena == "play cutscene 6":
-        cutscene = Cutscene(screen, 6)
+        cutscene = Cutscene(screen, 6, player1)
         nextCena = cutscene.load()
         
     elif nextCena == "play cutscene 7":
-        cutscene = Cutscene(screen, 7)
+        cutscene = Cutscene(screen, 7, player1)
         nextCena = cutscene.load()
         
     elif nextCena == "leaderboard":
