@@ -70,7 +70,7 @@ class GaudencioMinigame:
             if keys[pygame.K_SPACE]:
                 if not player1_points >= maxpoints:
                     if gaudencio.orientation == "U":
-                        player1_points += 100
+                        player1_points += 15
                         player1_progress_bar.update(player1_points)
                     else:
                         player1_points -= 25
