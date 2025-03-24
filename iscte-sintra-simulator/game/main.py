@@ -11,7 +11,6 @@ from characters.players.player import Player
 from day_manager import DayManager
 from scenes.cut_scene import Cutscene
 from costum_panel import CostumPanel
-from scores.leaderboard import LeaderBoard
 
 # Musica
 pygame.mixer.init()
@@ -32,7 +31,6 @@ lab = LAB(screen, player1)
 minigame1 = Minigame1(screen, player1)
 day_manager = DayManager(screen, player1, 1)
 costum_panel = CostumPanel(screen, player1)
-leaderBoard = LeaderBoard(screen)
 
 mainMenu.load()
 nextCena = mainMenu.introDialog(screen)
@@ -94,8 +92,13 @@ while True:
         cutscene = Cutscene(screen, 4)
         nextCena = cutscene.load()
         
+    elif nextCena == "play cutscene 5":
+        cutscene = Cutscene(screen, 5)
+        nextCena = cutscene.load()
+        
     elif nextCena == "leaderboard":
-        leaderBoard.save_leaderboard()
-        nextCena = leaderBoard.show_leaderboard()
+        print("Leaderboard")
+        nextCena = multiusos.load(False,False, day_manager.get_current_day())
+        
         
     else: break

@@ -108,17 +108,38 @@ class Cutscene:
 
         filme4_4 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_4.png", True)
 
-        filme4_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_5.png", False)
+        filme4_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_5.png", True)
 
-        filme4_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_6.png", True)
+        filme4_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_6.png", False)
 
-        filme4_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_7.png", False)
+        filme4_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_7.png", True)
 
         filme4_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_8.png", True)
 
         filme4_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_9.png", False)
-        
 
+        filme4_10 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_10.png", True)
+
+        filme4_11 = Frame("iscte-sintra-simulator/assets/images/filmes/filme4/filme4_11.png", False)
+        
+        #Filme 5
+        filme5_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_1.png", False)
+
+        filme5_2 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_2.png", False)
+
+        filme5_3 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_3.png", True)
+
+        filme5_4 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_4.png", True)
+
+        filme5_5 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_5.png", False)
+        
+        filme5_6 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_6.png", False)
+
+        filme5_7 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_7.png", False)
+
+        filme5_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_8.png", False)
+
+        filme5_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_9.png", False)
         
         if self.sceneNumber == 1:
             self.images = [
@@ -176,7 +197,21 @@ class Cutscene:
                 filme4_6,
                 filme4_7,
                 filme4_8,
-                filme4_9
+                filme4_9,
+                filme4_10,
+                filme4_11
+            ]
+            
+        elif self.sceneNumber == 5:
+            self.images = [
+                filme5_1,
+                filme5_2,
+                filme5_3,
+                filme5_4,
+                filme5_5,
+                filme5_6,
+                filme5_7,
+                filme5_8
             ]
 
         return self.images
@@ -202,6 +237,8 @@ class Cutscene:
                         return "go to entrada - day begin"
                     elif self.sceneNumber == 4:
                         return "go to uata"
+                    elif self.sceneNumber == 5:
+                        return "fim do dia"
             
             if self.current_frame < len(self.images):
                 frame = self.images[self.current_frame]
@@ -226,3 +263,6 @@ class Cutscene:
                 
                 elif self.sceneNumber == 4:
                     return "go to uata"
+                
+                elif self.sceneNumber == 5:
+                    return "fim do dia"

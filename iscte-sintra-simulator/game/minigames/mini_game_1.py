@@ -136,7 +136,8 @@ class Minigame1:
                         elapsed_time = (end_time - start_time) / 1000
                         self.player1.score += max(10, int(200 - elapsed_time))
                         running = False
-                        return "go to multiusos - lab"
+                        # return "go to multiusos - lab"
+                        return "fim do dia"
 
             pygame.display.flip()
             clock.tick(60)
