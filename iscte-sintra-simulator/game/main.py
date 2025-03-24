@@ -28,7 +28,7 @@ uata = UATA(screen, player1)
 minigame2 = Minigame2(screen, player1)
 lab = LAB(screen, player1)
 minigame1 = Minigame1(screen, player1)
-day_manager = DayManager(screen, player1, 1)
+day_manager = DayManager(screen, player1, 3)
 
 mainMenu.load()
 nextCena = day_manager.show_begin_day()
@@ -93,10 +93,7 @@ while True:
     elif nextCena == "play cutscene 5":
         cutscene = Cutscene(screen, 5)
         nextCena = cutscene.load()
-        
-    elif nextCena == "leaderboard":
-        print("Leaderboard")
-        nextCena = multiusos.load(False,False, day_manager.get_current_day())
+    
         
         
     else: break
