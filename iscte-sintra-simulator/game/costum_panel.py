@@ -193,8 +193,8 @@ class CostumPanel:
                         # Atributos a serem passados para a proxima tela
                         self.player1.set_nome(self.input_text)
                         print(self.player1.get_nome())
-                        self.player1.set_curso(self.curso_name)
-                        print(self.player1.get_curso())
+                        self.player1.set_course(self.curso_name)
+                        print(self.player1.get_course())
                         self.player1.set_personagem(self.personagem)
                         print(self.player1.get_personagem())
                         running = False

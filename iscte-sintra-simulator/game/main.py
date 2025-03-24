@@ -18,7 +18,7 @@ pygame.mixer.music.play(-1)  # Play indefinitely (-1 loops)
 pygame.mixer.music.set_volume(0.03)  # Volume (0.0 to 1.0)
 
 screen = pygame.display.set_mode((1280, 720))
-player1 = Player(800, 160, "iscte-sintra-simulator/assets/images/characters/Default1/Default1_front 1.png", (0,0,0), 1)
+player1 = Player(800, 160, "iscte-sintra-simulator/assets/images/characters/Default1/Default1_front 1.png", (0,0,0))
 
 mainMenu = MainMenu(screen, player1)
 multiusos = Multiusos(screen, player1)
@@ -28,7 +28,7 @@ uata = UATA(screen, player1)
 minigame2 = Minigame2(screen, player1)
 lab = LAB(screen, player1)
 minigame1 = Minigame1(screen, player1)
-day_manager = DayManager(screen, player1, 3)
+day_manager = DayManager(screen, player1, 1)
 
 mainMenu.load()
 nextCena = day_manager.show_begin_day()

@@ -112,6 +112,9 @@ class DayManager:
                     print(event.pos)
                     if nextday_rect.collidepoint(event.pos):
                         print("Dia Seguinte")
+                        if self.get_current_day() == 3:
+                            LeaderBoard().add_to_leaderboard(self.player1.get_nome(), self.player1.get_course(), self.player1.get_score())
+
                         
                         self.next_day()
 
@@ -179,7 +182,6 @@ class DayManager:
                 self.screen.blit(leaderboard_image, (0,0))
                 self.screen.blit(exit_game_image, exit_game_rect)
                 y_offset = 300
-                # LeaderBoard.add_to_leaderboard(self.player1.get_nome(), self.player1.)
                 
                 leaderBoard = LeaderBoard().get_leaderboard()
                 
