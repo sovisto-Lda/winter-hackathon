@@ -115,7 +115,7 @@ class DayManager:
                         if self.get_current_day() == 3:
                             LeaderBoard().add_to_leaderboard(self.player1.get_nome(), self.player1.get_course(), self.player1.get_score())
 
-                        
+    
                         self.next_day()
 
                         return "inicio do dia"  # Transition to the next scene
