@@ -92,4 +92,13 @@ while True:
         cutscene = Cutscene(screen, 4)
         nextCena = cutscene.load()
         
+    elif nextCena == "play cutscene 5":
+        cutscene = Cutscene(screen, 5)
+        nextCena = cutscene.load()
+        
+    elif nextCena == "leaderboard":
+        print("Leaderboard")
+        nextCena = multiusos.load(False,False, day_manager.get_current_day())
+        
+        
     else: break
