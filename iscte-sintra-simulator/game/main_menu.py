@@ -150,8 +150,8 @@ class MainMenu:
                         if play2_game_rect.collidepoint(event.pos):
                             running2= False
 
-                            # return "inicio do dia"
-                            return "leaderboard"
+                            return "inicio do dia"
+                            # return "leaderboard"
 
                     if event.type == pygame.QUIT:
                         running2 = False   

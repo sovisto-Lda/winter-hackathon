@@ -67,7 +67,6 @@ class LeaderBoard:
         
         self.save_leaderboard()
 
-        y_offset = 150  # Initialize y_offset for text placement
 
         while running:
             for event in pygame.event.get():
@@ -80,11 +79,11 @@ class LeaderBoard:
 
                 self.screen.fill((0, 0, 0))  # Clear the screen
                 self.screen.blit(image, rect)  # Draw the background image
+                y_offset = 300  # Initialize y_offset for text placement
 
                 # Draw top 10 leaderboard entries
                 for idx, entry in enumerate(self.leaderboard[:10], start=1):
-                    print(f"{idx}. {entry['Nome']} ({entry['Curso']}) — {entry['Pontuação']} pontos")  # Debug print
-                    self.draw_text(f"{idx}. {entry['Nome']} ({entry['Curso']}) — {entry['Pontuação']} pontos", 300, y_offset)
+                    self.draw_text(f"{idx}. {entry['Nome']} ({entry['Curso']}) — {entry['Pontuação']} pontos", 350, y_offset)
                     y_offset += 30  # Space between entries
 
                 pygame.display.flip()  # Update the display
