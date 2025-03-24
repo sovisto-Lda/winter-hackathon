@@ -140,6 +140,14 @@ class Cutscene:
         filme5_8 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_8.png", False)
 
         filme5_9 = Frame("iscte-sintra-simulator/assets/images/filmes/filme5/filme5_9.png", False)
+
+        #Filme 6
+        filme6_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme6/filme6_1.png", False)
+
+        filme6_2 = Frame("iscte-sintra-simulator/assets/images/filmes/filme6/filme6_2.png", True)
+
+        #Filme 7
+        filme7_1 = Frame("iscte-sintra-simulator/assets/images/filmes/filme7/minigame2ex.png", True)
         
         if self.sceneNumber == 1:
             self.images = [
@@ -211,7 +219,19 @@ class Cutscene:
                 filme5_5,
                 filme5_6,
                 filme5_7,
-                filme5_8
+                filme5_8,
+                filme5_9
+            ]
+
+        elif self.sceneNumber == 6:
+            self.images = [
+                filme6_1,
+                filme6_2
+            ]
+
+        elif self.sceneNumber == 7:
+            self.images = [
+                filme7_1
             ]
 
         return self.images
@@ -239,6 +259,10 @@ class Cutscene:
                         return "go to uata"
                     elif self.sceneNumber == 5:
                         return "fim do dia"
+                    elif self.sceneNumber == 6:
+                        return "go to multiusos"
+                    elif self.sceneNumber == 7:
+                        return "go to minigame1"
             
             if self.current_frame < len(self.images):
                 frame = self.images[self.current_frame]
@@ -266,3 +290,9 @@ class Cutscene:
                 
                 elif self.sceneNumber == 5:
                     return "fim do dia"
+                
+                elif self.sceneNumber == 6:
+                    return "go to multiusos"
+                
+                elif self.sceneNumber == 7:
+                    return "go to minigame1"
